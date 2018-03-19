@@ -157,3 +157,6 @@ test/testvulkan
 test/testwm2
 test/testyuv
 test/torturethread
+
+# for bazel
+/bazel-
