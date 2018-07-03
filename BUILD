@@ -19,6 +19,7 @@ SDL_LINKOPTS = select({
 		"-DEFAULTLIB:shell32",
 		"-DEFAULTLIB:advapi32",
 	],
+	"//conditions:default": [],
 })
 
 cc_library(

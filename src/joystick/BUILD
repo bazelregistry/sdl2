@@ -6,6 +6,10 @@ cc_library(
 		"//:windows": [
 			"//src/joystick/windows:windows",
 		],
+		# @TODO Add macos
+		"//conditions:default": [
+			"//src/joystick/linux:linux",
+		],
 	}),
 	visibility = ["//visibility:public"],
 )
