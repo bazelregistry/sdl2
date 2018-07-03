@@ -6,6 +6,10 @@ cc_library(
 		"//:windows": [
 			"//src/core/windows:windows"
 		],
+		"//conditions:default": [
+			"//src/core/unix:unix",
+			"//src/core/linux:linux",
+		],
 	}),
 	visibility = ["//visibility:public"],
 )

@@ -4,7 +4,10 @@ cc_library(
 	srcs = glob(["*.c"]),
 	deps = ["//:SDL2internal"] + select({
 		"//:windows": [
-			"//src/filesystem/windows:windows"
+			"//src/filesystem/windows:windows",
+		],
+		"//conditions:default": [
+			"//src/filesystem/unix:unix",
 		],
 	}),
 	visibility = ["//visibility:public"],
