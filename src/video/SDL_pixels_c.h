@@ -46,4 +46,6 @@ extern void SDL_DetectPalette(SDL_Palette *pal, SDL_bool *is_opaque, SDL_bool *h
 
 #endif /* SDL_pixels_c_h_ */
 
+#endif /* SDL_pixels_c_h_ */
+
 /* vi: set ts=4 sw=4 expandtab: */
