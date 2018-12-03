@@ -1,5 +1,5 @@
 cc_library(
-	name = "winmm",
+	name = "SDL_winmm",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	deps = ["//:SDL2internal"],

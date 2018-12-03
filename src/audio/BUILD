@@ -8,7 +8,7 @@ cc_library(
 			"//src/audio/dummy:dummy",
 			"//src/audio/wasapi:wasapi",
 			"//src/audio/directsound:directsound",
-			"//src/audio/winmm:winmm",
+			"//src/audio/winmm:SDL_winmm",
 		],
 		"//conditions:default": [
 			"//src/audio/disk:disk",
