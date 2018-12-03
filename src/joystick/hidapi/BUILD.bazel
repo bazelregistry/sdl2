@@ -1,7 +1,6 @@
 cc_library(
-	name = "windows",
-	hdrs = glob(["*.h"]),
-	srcs = glob(["*.c"]),
+	name = "hidapi",
+	srcs = glob(["*.c", "*.h"]),
 	deps = ["//:SDL2internal"],
 	visibility = ["//:__subpackages__"],
 )

@@ -1,7 +1,6 @@
 cc_library(
-	name = "windows",
-	hdrs = glob(["*.h"]),
-	srcs = glob(["*.c"]),
+	name = "dummy",
+	srcs = ["SDL_sysjoystick.c"],
 	deps = ["//:SDL2internal"],
 	visibility = ["//:__subpackages__"],
 )

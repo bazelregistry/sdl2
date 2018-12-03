@@ -4,7 +4,9 @@ cc_library(
 	srcs = glob(["*.c"]),
 	deps = ["//:SDL2internal"] + select({
 		"//:windows": [
+			# "//src/joystick/dummy:dummy",
 			"//src/joystick/windows:windows",
+			# "//src/joystick/hidapi:hidapi",
 		],
 		# @TODO Add macos
 		"//conditions:default": [
