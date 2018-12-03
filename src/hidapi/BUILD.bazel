@@ -1,0 +1,13 @@
+cc_library(
+	name = "hidapi",
+	hdrs = glob(["*.h"]) + ["hidapi/hidapi.h"],
+	includes = ["hidapi"],
+	srcs = glob(["*.c"]),
+	deps = ["//:SDL2internal"] + select({
+		"//:windows": [
+			"//src/hidapi/windows:windows"
+		],
+		"//conditions:default": [],
+	}),
+	visibility = ["//visibility:public"],
+)

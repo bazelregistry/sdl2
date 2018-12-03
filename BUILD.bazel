@@ -18,6 +18,9 @@ SDL_LINKOPTS = select({
 		"-DEFAULTLIB:uuid",
 		"-DEFAULTLIB:shell32",
 		"-DEFAULTLIB:advapi32",
+		"-DEFAULTLIB:hid",
+		"-DEFAULTLIB:setupapi",
+		"-DEFAULTLIB:opengl32",
 	],
 	"//conditions:default": [],
 })
@@ -68,6 +71,7 @@ cc_library(
 		"//src/file:file",
 		"//src/filesystem:filesystem",
 		"//src/haptic:haptic",
+		"//src/hidapi:hidapi",
 		"//src/joystick:joystick",
 		"//src/libm:libm",
 		"//src/loadso:loadso",

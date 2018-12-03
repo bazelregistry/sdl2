@@ -6,7 +6,7 @@ cc_library(
 		"//:windows": [
 			# "//src/joystick/dummy:dummy",
 			"//src/joystick/windows:windows",
-			# "//src/joystick/hidapi:hidapi",
+			"//src/joystick/hidapi:SDL_hidapi",
 		],
 		# @TODO Add macos
 		"//conditions:default": [
