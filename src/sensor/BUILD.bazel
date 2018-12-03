@@ -1,0 +1,12 @@
+cc_library(
+	name = "sensor",
+	srcs = [
+		"SDL_sensor_c.h",
+		"SDL_sensor.c",
+		"SDL_syssensor.h",
+		"dummy/SDL_dummysensor.c",
+		"dummy/SDL_dummysensor.h",
+	],
+	deps = ["//:SDL2internal"],
+	visibility = ["//visibility:public"],
+)

@@ -1,0 +1,7 @@
+cc_test(
+	name = "testbounds",
+	srcs = ["testbounds.c"],
+	deps = [
+		"//:SDL2",
+	],
+)
