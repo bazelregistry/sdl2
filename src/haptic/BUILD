@@ -7,7 +7,7 @@ cc_library(
 			"//src/haptic/windows:windows"
 		],
 		"//conditions:default": [
-			"//src/haptic/linux:linux",
+			# "//src/haptic/linux:linux",
 		],
 	}),
 	visibility = ["//visibility:public"],

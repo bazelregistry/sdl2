@@ -7,7 +7,7 @@ cc_library(
 			"//src/filesystem/windows:windows",
 		],
 		"//conditions:default": [
-			"//src/filesystem/unix:unix",
+			# "//src/filesystem/unix:unix",
 		],
 	}),
 	visibility = ["//visibility:public"],
