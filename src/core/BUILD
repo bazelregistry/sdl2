@@ -7,8 +7,8 @@ cc_library(
 			"//src/core/windows:windows"
 		],
 		"//conditions:default": [
-			"//src/core/unix:unix",
-			"//src/core/linux:linux",
+			# "//src/core/unix:unix",
+			# "//src/core/linux:linux",
 		],
 	}),
 	visibility = ["//visibility:public"],

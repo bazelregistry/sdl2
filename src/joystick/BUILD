@@ -10,7 +10,7 @@ cc_library(
 		],
 		# @TODO Add macos
 		"//conditions:default": [
-			"//src/joystick/linux:linux",
+			# "//src/joystick/linux:linux",
 		],
 	}),
 	visibility = ["//visibility:public"],
