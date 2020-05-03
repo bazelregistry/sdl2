@@ -10,7 +10,8 @@ cc_library(
 			"//src/video/windows:windows",
 			"//src/video/khronos:khronos",
 			"//src/video/yuv2rgb:yuv2rgb",
-		]
+		],
+		"//conditions:default": [],
 	}),
 	visibility = ["//visibility:public"],
 )

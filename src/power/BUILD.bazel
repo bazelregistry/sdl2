@@ -8,6 +8,7 @@ cc_library(
 		"//:windows": [
 			"//src/power/windows:windows",
 		],
+		"//conditions:default": [],
 	}),
 	visibility = ["//visibility:public"],
 )

@@ -1,11 +1,8 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-config_setting(
+alias(
 	name = "windows",
-	values = {
-		"cpu": "x64_windows",
-	},
-	visibility = ["//:__subpackages__"],
+	actual  = "@bazel_tools//src/conditions:windows"
 )
 
 SDL_LINKOPTS = select({

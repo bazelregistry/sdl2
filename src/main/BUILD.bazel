@@ -6,6 +6,7 @@ cc_library(
 		"//:windows": [
 			"//src/main/windows:windows",
 		],
+		"//conditions:default": [],
 	}),
 	visibility = ["//visibility:public"],
 )
