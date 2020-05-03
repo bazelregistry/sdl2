@@ -1,9 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-	name = "windows",
-	hdrs = glob(["*.h"]),
-	srcs = glob(["*.c"]),
+	name = "dummy",
+	hdrs = glob(["**/*.h"]),
+	srcs = glob(["**/*.c"]),
 	deps = ["//:SDL2internal"],
 	visibility = ["//:__subpackages__"],
 )
