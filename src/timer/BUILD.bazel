@@ -1,3 +1,5 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
 cc_library(
 	name = "timer",
 	hdrs = glob(["*.h"]),
@@ -6,6 +8,7 @@ cc_library(
 		"//:windows": [
 			"//src/timer/windows:windows",
 		],
+		"//conditions:default": [],
 	}),
 	visibility = ["//visibility:public"],
 )

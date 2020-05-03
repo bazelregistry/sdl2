@@ -1,9 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
 cc_library(
 	name = "main",
 	deps = ["//:SDL2internal"] + select({
 		"//:windows": [
 			"//src/main/windows:windows",
 		],
+		"//conditions:default": [],
 	}),
 	visibility = ["//visibility:public"],
 )

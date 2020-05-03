@@ -1,3 +1,5 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
 cc_library(
 	name = "video",
 	hdrs = glob(["*.h"]),
@@ -8,7 +10,8 @@ cc_library(
 			"//src/video/windows:windows",
 			"//src/video/khronos:khronos",
 			"//src/video/yuv2rgb:yuv2rgb",
-		]
+		],
+		"//conditions:default": [],
 	}),
 	visibility = ["//visibility:public"],
 )

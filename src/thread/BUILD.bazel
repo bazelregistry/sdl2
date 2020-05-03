@@ -1,3 +1,5 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
 MISSING_IMPL_GENERIC = select({
 	"//:windows": [
 		# Missing SDL_CreateCond, SDL_DestroyCond, SDL_CondBroadcast,
@@ -15,6 +17,7 @@ cc_library(
 		"//:windows": [
 			"//src/thread/windows:windows",
 		],
+		"//conditions:default": [],
 	}),
 	visibility = ["//visibility:public"],
 )
