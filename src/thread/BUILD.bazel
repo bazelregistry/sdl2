@@ -17,7 +17,16 @@ cc_library(
 		"//:windows": [
 			"//src/thread/windows:windows",
 		],
-		"//conditions:default": [],
+		"//conditions:default": [
+			"//src/dynapi:headers",
+			"//src/thread/pthread:pthread",
+		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )

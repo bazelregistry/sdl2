@@ -1,9 +1,13 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-	name = "windows",
+	name = "pthread",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"],
+	deps = [
+		"//src/dynapi:headers",
+		"//src/thread:headers",
+		"//:SDL2internal"
+	],
 	visibility = ["//:__subpackages__"],
 )

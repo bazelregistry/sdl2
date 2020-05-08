@@ -13,6 +13,7 @@ cc_library(
 			"//src/audio/winmm:SDL_winmm",
 		],
 		"//conditions:default": [
+			"//src/dynapi:headers",
 			"//src/audio/disk:disk",
 			"//src/audio/dummy:dummy",
 			"//src/audio/alsa:alsa",

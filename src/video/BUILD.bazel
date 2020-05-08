@@ -4,6 +4,7 @@ cc_library(
 	name = "video",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
+	copts = ["-Isrc/video/khronos"],
 	deps = ["//:SDL2internal"] + select({
 		"//:windows": [
 			"//src/video/dummy:dummy",
@@ -11,7 +12,20 @@ cc_library(
 			"//src/video/khronos:khronos",
 			"//src/video/yuv2rgb:yuv2rgb",
 		],
-		"//conditions:default": [],
+		"//conditions:default": [
+			"//src/dynapi:headers",
+			"//src/timer:headers",
+			"//src/video/cocoa:headers",
+			"//src/video/dummy:dummy",
+			"//src/video/khronos:khronos",
+			"//src/video/yuv2rgb:yuv2rgb",
+		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )
