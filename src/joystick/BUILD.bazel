@@ -4,7 +4,14 @@ cc_library(
 	name = "joystick",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"] + select({
+	deps = [
+			"//:SDL2internal",
+			"//src/dynapi:headers",
+			"//src/thread:headers",
+			"//src/events:headers",
+			"//src/video:headers",
+			"//src/video/khronos:khronos",
+		] + select({
 		"//:windows": [
 			# "//src/joystick/dummy:dummy",
 			"//src/joystick/windows:windows",
@@ -15,5 +22,11 @@ cc_library(
 			# "//src/joystick/linux:linux",
 		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )

@@ -4,6 +4,10 @@ cc_library(
 	name = "file",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:headers",
+		"//src/file/cocoa:cocoa",
+	],
 	visibility = ["//visibility:public"],
 )

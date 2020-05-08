@@ -4,7 +4,11 @@ cc_library(
 	name = "render",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"] + select({
+	deps = [
+			"//:SDL2internal",
+			"//src/dynapi:headers",
+			"//src/render/software:headers",
+		] + select({
 		"//:windows": [
 			"//src/render/direct3d:direct3d",
 			"//src/render/direct3d11:direct3d11",
@@ -13,7 +17,8 @@ cc_library(
 			"//src/render/opengles2:opengles2",
 			"//src/render/software:software",
 		],
-		"//conditions:default": [],
+		"//conditions:default": [
+		],
 	}),
 	visibility = ["//visibility:public"],
 )

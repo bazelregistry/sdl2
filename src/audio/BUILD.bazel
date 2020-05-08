@@ -4,7 +4,10 @@ cc_library(
 	name = "audio",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"] + select({
+	deps = [
+			"//src/dynapi:headers",
+			"//:SDL2internal"
+		] + select({
 		"//:windows": [
 			"//src/audio/disk:disk",
 			"//src/audio/dummy:dummy",
@@ -13,7 +16,7 @@ cc_library(
 			"//src/audio/winmm:SDL_winmm",
 		],
 		"//conditions:default": [
-			"//src/dynapi:headers",
+			"//src/thread:thread",
 			"//src/audio/disk:disk",
 			"//src/audio/dummy:dummy",
 			"//src/audio/alsa:alsa",
@@ -26,5 +29,11 @@ cc_library(
 			"//src/audio/fusionsound:fusionsound",
 		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )

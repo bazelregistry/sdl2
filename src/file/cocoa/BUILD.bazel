@@ -1,12 +1,11 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-	name = "libm",
+	name = "cocoa",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	deps = [
 		"//:SDL2internal",
-		"//src/dynapi:headers",
 	],
 	visibility = ["//visibility:public"],
 )

@@ -4,6 +4,10 @@ cc_library(
 	name = "disk",
 	hdrs = glob(["**/*.h"]),
 	srcs = glob(["**/*.c"]),
-	deps = ["//:SDL2internal"],
+	deps = [
+		"//:SDL2internal",
+		"//src/audio:headers",
+		"//src/dynapi:headers",
+	],
 	visibility = ["//:__subpackages__"],
 )

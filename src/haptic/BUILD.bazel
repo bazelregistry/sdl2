@@ -4,7 +4,11 @@ cc_library(
 	name = "haptic",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"] + select({
+	deps = [
+			"//:SDL2internal",
+			"//src/dynapi:headers",
+			"//src/joystick:headers",
+		] + select({
 		"//:windows": [
 			"//src/haptic/windows:windows"
 		],

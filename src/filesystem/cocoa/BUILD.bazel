@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+objc_library(
+	name = "cocoa",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.m"]),
+	deps = ["//:SDL2internal"] + select({
+		"//:windows": [
+			"//src/filesystem/windows:windows",
+		],
+		"//conditions:default": [
+			# "//src/filesystem/unix:unix",
+		],
+	}),
+	visibility = ["//visibility:public"],
+)
