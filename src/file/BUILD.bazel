@@ -7,7 +7,14 @@ cc_library(
 	deps = [
 		"//:SDL2internal",
 		"//src/dynapi:headers",
-		"//src/file/cocoa:cocoa",
-	],
+	] + select({
+		"//:windows": [
+		],
+		"//:macos": [
+			"//src/file/cocoa:cocoa",
+		],
+		"//conditions:default": [
+		],
+	}),
 	visibility = ["//visibility:public"],
 )
