@@ -32,6 +32,7 @@ SDL_LINKOPTS = select({
 
 cc_library(
 	name = "SDL2_hdrs",
+	include_prefix = "SDL2",
 	hdrs = glob(["include/*.h", "include/**/*.h"]),
 	strip_include_prefix = "include",
 	visibility = ["//visibility:public"],
