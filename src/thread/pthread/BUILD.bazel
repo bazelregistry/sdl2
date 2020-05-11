@@ -5,8 +5,9 @@ cc_library(
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	deps = [
-		"//src/dynapi:headers",
+		"//src/dynapi:dynapi",
 		"//src/thread:headers",
+		"//src/thread/generic:headers",
 		"//:SDL2internal"
 	],
 	visibility = ["//:__subpackages__"],

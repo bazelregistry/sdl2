@@ -11,9 +11,9 @@ cc_library(
 	],
 	deps = [
 		"//:SDL2internal",
-		"//src/dynapi:headers",
-		"//src/events:headers",
-		"//src/video:headers",
+		"//src/dynapi:dynapi",
+		"//src/events:events",
+		"//src/video:video",
 		"//src/video/khronos:khronos",
 	],
 	visibility = ["//visibility:public"],

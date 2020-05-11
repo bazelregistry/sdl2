@@ -4,21 +4,25 @@ cc_library(
 	name = "audio",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
+	alwayslink = True,
+	linkstatic = False,
 	deps = [
-			"//src/dynapi:headers",
-			"//:SDL2internal"
-		] + select({
-		"//:windows": [
+			"//:SDL2internal",
+			"//src/dynapi:dynapi",
 			"//src/audio/disk:disk",
 			"//src/audio/dummy:dummy",
+		] + select({
+		"//:windows": [
 			"//src/audio/wasapi:wasapi",
 			"//src/audio/directsound:directsound",
 			"//src/audio/winmm:SDL_winmm",
 		],
+		"//:macos": [
+			"//src/thread:thread",
+			"//src/audio/coreaudio:coreaudio",
+		],
 		"//conditions:default": [
 			"//src/thread:thread",
-			"//src/audio/disk:disk",
-			"//src/audio/dummy:dummy",
 			"//src/audio/alsa:alsa",
 			"//src/audio/jack:jack",
 			"//src/audio/esd:esd",

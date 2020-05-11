@@ -1,21 +1,23 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-
 objc_library(
-	name = "cocoa",
+	name = "metal",
 	hdrs = glob(["*.h"]),
-	srcs = glob(["*.m"]),	includes = ["../../thread"],
+	srcs = glob(["*.m"]),
 	copts = [
 		"-fno-objc-arc",
 		"-undefined",
 		"dynamic_lookup",
+		"-framework Cocoa",
 	],
 	sdk_frameworks = [
-		"Cocoa",
+		"Metal",
 	],
 	deps = [
 		"//:SDL2internal",
 		"//src/dynapi:dynapi",
+		"//src/render:headers",
+		"//src/video/cocoa:cocoa",
 	],
 	visibility = ["//:__subpackages__"],
 )

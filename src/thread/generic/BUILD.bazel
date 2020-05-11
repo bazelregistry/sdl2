@@ -4,9 +4,10 @@ cc_library(
 	name = "generic",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
+	alwayslink = True,
 	deps = [
 		"//:SDL2internal",
-		"//src/dynapi:headers",
+		"//src/dynapi:dynapi",
 		"//src/thread:headers",
 		"//src/thread/pthread:headers",
 	],
@@ -15,6 +16,6 @@ cc_library(
 
 cc_library(
 	name = "headers",
-	hdrs = glob(["*.h"]),
+	hdrs = glob(["*.h", "*.c"]),
 	visibility = ["//:__subpackages__"],
 )

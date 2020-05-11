@@ -4,12 +4,16 @@ cc_library(
 	name = "power",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
+	alwayslink = True,
 	deps = [
 			"//:SDL2internal",
-			"//src/dynapi:headers",
+			"//src/dynapi:dynapi",
 		] + select({
 		"//:windows": [
 			"//src/power/windows:windows",
+		],
+		"//:macos": [
+			"//src/power/macosx:macosx",
 		],
 		"//conditions:default": [],
 	}),

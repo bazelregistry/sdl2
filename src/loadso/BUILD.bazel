@@ -2,9 +2,13 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "loadso",
+	alwayslink = True,
 	deps = ["//:SDL2internal"] + select({
 		"//:windows": [
 			"//src/loadso/windows:windows",
+		],
+		"//:macos": [
+			"//src/loadso/dlopen:dlopen",
 		],
 		"//conditions:default": [],
 	}),

@@ -4,9 +4,10 @@ cc_library(
 	name = "libm",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
+	alwayslink = True,
 	deps = [
 		"//:SDL2internal",
-		"//src/dynapi:headers",
+		"//src/dynapi:dynapi",
 	],
 	visibility = ["//visibility:public"],
 )

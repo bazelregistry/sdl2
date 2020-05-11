@@ -6,6 +6,9 @@ cc_library(
 		"//:windows": [
 			"//src/main/windows:windows",
 		],
+		"//:macos": [
+			"//src/main/dummy:dummy",
+		],
 		"//conditions:default": [],
 	}),
 	visibility = ["//visibility:public"],

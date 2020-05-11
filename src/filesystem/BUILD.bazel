@@ -8,6 +8,9 @@ cc_library(
 		"//:windows": [
 			"//src/filesystem/windows:windows",
 		],
+		"//:macos": [
+			"//src/filesystem/cocoa:cocoa",
+		],
 		"//conditions:default": [
 			# "//src/filesystem/unix:unix",
 		],

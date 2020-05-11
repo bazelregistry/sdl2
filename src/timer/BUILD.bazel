@@ -6,12 +6,15 @@ cc_library(
 	srcs = glob(["*.c"]),
 	deps = [
 			"//:SDL2internal",
-			"//src/dynapi:headers",
+			"//src/dynapi:dynapi",
 			"//src/thread:headers",
 			"//src/thread/pthread:headers",
 		] + select({
 		"//:windows": [
 			"//src/timer/windows:windows",
+		],
+		"//:macos": [
+			"//src/timer/unix:unix",
 		],
 		"//conditions:default": [],
 	}),

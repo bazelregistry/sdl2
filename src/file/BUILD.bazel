@@ -6,7 +6,7 @@ cc_library(
 	srcs = glob(["*.c"]),
 	deps = [
 		"//:SDL2internal",
-		"//src/dynapi:headers",
+		"//src/dynapi:dynapi",
 	] + select({
 		"//:windows": [
 		],
@@ -14,6 +14,7 @@ cc_library(
 			"//src/file/cocoa:cocoa",
 		],
 		"//conditions:default": [
+			"//src/file/cocoa:cocoa",
 		],
 	}),
 	visibility = ["//visibility:public"],

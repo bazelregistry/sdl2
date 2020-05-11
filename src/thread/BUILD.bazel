@@ -18,8 +18,8 @@ cc_library(
 			# "//src/thread/windows:windows",
 		],
 		"//conditions:default": [
-			"//src/dynapi:headers",
-			"//src/thread/pthread:headers",
+			"//src/dynapi:dynapi",
+			"//src/thread/pthread:pthread",
 		],
 	}),
 	visibility = ["//visibility:public"],

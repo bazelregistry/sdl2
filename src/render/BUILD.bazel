@@ -6,8 +6,8 @@ cc_library(
 	srcs = glob(["*.c"]),
 	deps = [
 			"//:SDL2internal",
-			"//src/dynapi:headers",
-			"//src/render/software:headers",
+			"//src/dynapi:dynapi",
+			"//src/render/software:software",
 		] + select({
 		"//:windows": [
 			"//src/render/direct3d:direct3d",
@@ -15,10 +15,21 @@ cc_library(
 			"//src/render/opengl:opengl",
 			"//src/render/opengles:opengles",
 			"//src/render/opengles2:opengles2",
-			"//src/render/software:software",
+		],
+		"//:macos": [
+			"//src/render/metal:metal",
+			"//src/render/opengl:opengl",
+			"//src/render/opengles:opengles",
+			"//src/render/opengles2:opengles2",
 		],
 		"//conditions:default": [
 		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )

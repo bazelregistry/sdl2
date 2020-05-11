@@ -4,9 +4,10 @@ cc_library(
 	name = "dummy",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
+	alwayslink = True,
 	deps = [
 		"//:SDL2internal",
-		"//src/dynapi:headers",
+		"//src/dynapi:dynapi",
 		"//src/video:headers",
 		"//src/events:headers",
 		"//src/video/khronos:khronos",

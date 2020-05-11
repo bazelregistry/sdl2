@@ -4,7 +4,13 @@ cc_library(
 	name = "software",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"],
+	alwayslink = True,
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/render:headers",
+		"//src/video:video",
+	],
 	visibility = ["//:__subpackages__"],
 )
 

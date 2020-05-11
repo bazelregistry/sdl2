@@ -61,12 +61,22 @@ cc_library(
 	visibility = ["//:__subpackages__"],
 )
 
+apple_binary(
+	name = "SDL2_bin",
+	binary_type = "dylib",
+	deps = [
+		":SDL2",
+	],
+	platform_type = "macos",
+	visibility = ["//:__subpackages__"],
+)
+
 cc_library(
 	name = "SDL2",
-	include_prefix = "SDL2",
-	hdrs = glob(["include/**/*.h"]),
+	hdrs = glob(["include/*.h"]),
 	includes = ["include", "src"],
 	srcs = glob(["include/*.h", "src/*.c", "src/*.h"]),
+	alwayslink = True,
 	deps = [
 		":SDL2internal",
 		"//src/atomic:atomic",

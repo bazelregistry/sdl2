@@ -1,13 +1,15 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-	name = "fusionsound",
-	hdrs = glob(["**/*.h"]),
-	srcs = glob(["**/*.c"]),
+	name = "mac",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	includes = ["../hidapi"],
 	alwayslink = True,
 	deps = [
 		"//:SDL2internal",
-		"//src/dynapi:dynapi"
+		"//src/dynapi:dynapi",
+		"//src/hidapi:headers"
 	],
 	visibility = ["//:__subpackages__"],
 )

@@ -4,9 +4,10 @@ cc_library(
 	name = "atomic",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
+	alwayslink = True,
 	visibility = ["//visibility:public"],
 	deps = [
 		"//:SDL2internal",
-		"//src/dynapi:headers",
+		"//src/dynapi:dynapi",
 	],
 )

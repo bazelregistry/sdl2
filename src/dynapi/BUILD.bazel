@@ -7,9 +7,3 @@ cc_library(
 	deps = ["//:SDL2internal"],
 	visibility = ["//visibility:public"],
 )
-
-cc_library(
-	name = "headers",
-	hdrs = glob(["*.h"]),
-	visibility = ["//visibility:public"],
-)
