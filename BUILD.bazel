@@ -7,7 +7,7 @@ alias(
 
 alias(
 	name = "macos",
-	actual  = "@bazel_tools//src/conditions:darwin"
+	actual  = "@bazel_tools//src/conditions:darwin_x86_64"
 )
 
 alias(
@@ -89,7 +89,7 @@ cc_binary(
 	deps = [
 		":SDL2_lib",
 	],
-	visibility = ["//:__subpackages__"],
+	visibility = ["//visibility:public"],
 )
 
 cc_binary(
@@ -99,7 +99,7 @@ cc_binary(
 		":SDL2_lib",
 	],
 	linkopts = SDL_LINKOPTS,
-	visibility = ["//:__subpackages__"],
+	visibility = ["//visibility:public"],
 )
 
 cc_library(
