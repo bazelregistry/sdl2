@@ -20,7 +20,7 @@ The build succeeds, but I didn't try anything more than that.
 # Windows build:
 
 ```
-bazel build //:SDL2
+bazel build //:SDL2.dll
 ```
 
 The build succeeds, but I didn't try anything more than that.

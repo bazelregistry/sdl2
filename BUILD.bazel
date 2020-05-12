@@ -7,7 +7,7 @@ alias(
 
 alias(
 	name = "macos",
-	actual  = "@bazel_tools//src/conditions:darwin_x86_64"
+	actual  = "@bazel_tools//src/conditions:darwin"
 )
 
 alias(
