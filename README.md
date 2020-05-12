@@ -1,11 +1,11 @@
-# SDL 2.0.8 w/ Bazel build
+# SDL 2.0.9 w/ Bazel build
 
 This project is WIP.
 
 # macOS build:
 
 ```
-bazel build //:SDL2_dylib --cpu='darwin_x86_64'
+bazel build //:SDL2_dylib
 ```
 
 I managed to get a project that uses SDL2 to work with the SDL2.dylib built by bazel.
