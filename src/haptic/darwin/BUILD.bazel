@@ -2,7 +2,6 @@ cc_library(
 	name = "darwin",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	alwayslink = True,
 	deps = [
 		"//:SDL2internal",
 		"//src/dynapi:dynapi",

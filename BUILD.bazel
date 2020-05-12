@@ -7,7 +7,7 @@ alias(
 
 alias(
 	name = "macos",
-	actual  = "@bazel_tools//src/conditions:darwin"
+	actual  = "@bazel_tools//src/conditions:darwin_x86_64"
 )
 
 alias(
@@ -69,7 +69,7 @@ apple_binary(
 	name = "SDL2_mac",
 	binary_type = "dylib",
 	deps = [
-		":SDL2",
+		":SDL2_lib",
 	],
 	platform_type = "macos",
 	visibility = ["//:__subpackages__"],
@@ -82,12 +82,29 @@ genrule(
    cmd = "cp $(location SDL2_mac) $(location SDL2.dylib)",
 )
 
+cc_binary(
+	name = "libSDL2.so",
+	linkshared = True,
+	deps = [
+		":SDL2_lib",
+	],
+	visibility = ["//:__subpackages__"],
+)
+
+cc_binary(
+	name = "SDL2.dll",
+	linkshared = True,
+	deps = [
+		":SDL2_lib",
+	],
+	visibility = ["//:__subpackages__"],
+)
+
 cc_library(
-	name = "SDL2",
+	name = "SDL2_lib",
 	hdrs = glob(["include/*.h"]),
 	includes = ["include", "src"],
 	srcs = glob(["include/*.h", "src/*.c", "src/*.h"]),
-	alwayslink = True,
 	deps = [
 		":SDL2internal",
 		"//src/atomic:atomic",

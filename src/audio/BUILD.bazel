@@ -4,8 +4,6 @@ cc_library(
 	name = "audio",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	alwayslink = True,
-	linkstatic = False,
 	deps = [
 			"//:SDL2internal",
 			"//src/dynapi:dynapi",

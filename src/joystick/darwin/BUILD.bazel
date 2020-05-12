@@ -4,7 +4,6 @@ objc_library(
 	name = "joystick_darwin",
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	alwayslink = True,
 	sdk_frameworks = [
 		"ForceFeedback",
 	],
