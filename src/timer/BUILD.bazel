@@ -16,7 +16,10 @@ cc_library(
 		"//:macos": [
 			"//src/timer/unix:unix",
 		],
-		"//conditions:default": [],
+		"//conditions:default": [
+			"//src/timer/unix:unix",
+			"//src/thread/generic:generic",
+		],
 	}),
 	visibility = ["//visibility:public"],
 )

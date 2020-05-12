@@ -12,7 +12,7 @@ alias(
 
 alias(
 	name = "linux",
-	actual  = "@bazel_tools//src/conditions:linux"
+	actual  = "@bazel_tools//src/conditions:linux_x86_64"
 )
 
 SDL_LINKOPTS = select({

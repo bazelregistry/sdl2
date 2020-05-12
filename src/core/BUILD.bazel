@@ -12,8 +12,8 @@ cc_library(
 			"//src/core/unix:unix"
 		],
 		"//conditions:default": [
-			# "//src/core/unix:unix",
-			# "//src/core/linux:linux",
+			"//src/core/unix:unix",
+			"//src/core/linux:linux",
 		],
 	}),
 	visibility = ["//visibility:public"],
