@@ -1,4 +1,5 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//:defs.bzl", "print_d")
 
 alias(
 	name = "windows",
@@ -30,9 +31,19 @@ SDL_LINKOPTS = select({
 		"-DEFAULTLIB:hid",
 		"-DEFAULTLIB:setupapi",
 		"-DEFAULTLIB:opengl32",
+		"-DEFAULTLIB:kernel32",
 	],
 	"//conditions:default": [],
 })
+
+print_d(
+	name = "debug",
+	value = select({
+		"//:windows": "windows",
+		"//:macos": "macos",
+		"//conditions:default": "default"
+	})
+)
 
 cc_library(
 	name = "SDL2_hdrs",
@@ -97,6 +108,7 @@ cc_binary(
 	deps = [
 		":SDL2_lib",
 	],
+	linkopts = SDL_LINKOPTS,
 	visibility = ["//:__subpackages__"],
 )
 
@@ -129,7 +141,6 @@ cc_library(
 		"//src/timer:timer",
 		"//src/video:video",
 	],
-	linkopts = SDL_LINKOPTS,
 	visibility = ["//visibility:public"],
 )
 
