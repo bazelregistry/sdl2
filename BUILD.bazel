@@ -1,5 +1,4 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
-load("//:defs.bzl", "print_d")
 
 alias(
 	name = "windows",
@@ -35,15 +34,6 @@ SDL_LINKOPTS = select({
 	],
 	"//conditions:default": [],
 })
-
-print_d(
-	name = "debug",
-	value = select({
-		"//:windows": "windows",
-		"//:macos": "macos",
-		"//conditions:default": "default"
-	})
-)
 
 cc_library(
 	name = "SDL2_hdrs",
