@@ -15,6 +15,9 @@ I managed to get a project that uses SDL2 to work with the SDL2.dylib built by b
 bazel build //:libSDL2.so
 ```
 
+## Notes
+SDL_dbus is disabled
+
 The build succeeds, but I didn't try anything more than that.
 
 # Windows build:
