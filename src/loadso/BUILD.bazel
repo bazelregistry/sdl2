@@ -2,6 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "loadso",
+	alwayslink = True,
 	deps = ["//:SDL2internal"] + select({
 		"//:windows": [
 			"//src/loadso/windows:windows",
@@ -9,7 +10,10 @@ cc_library(
 		"//:macos": [
 			"//src/loadso/dlopen:dlopen",
 		],
-		"//conditions:default": [],
+		"//conditions:default": [
+			"//src/loadso/dlopen:dlopen",
+			"//src/loadso/dummy:dummy",
+		],
 	}),
 	visibility = ["//visibility:public"],
 )

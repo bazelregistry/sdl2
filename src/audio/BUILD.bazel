@@ -2,6 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "audio",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	deps = [
@@ -21,6 +22,7 @@ cc_library(
 		],
 		"//conditions:default": [
 			"//src/thread:thread",
+			"//src/thread/generic:generic",
 			"//src/audio/alsa:alsa",
 			"//src/audio/jack:jack",
 			"//src/audio/esd:esd",

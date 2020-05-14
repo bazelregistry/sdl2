@@ -2,6 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "power",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	deps = [
@@ -14,7 +15,9 @@ cc_library(
 		"//:macos": [
 			"//src/power/macosx:macosx",
 		],
-		"//conditions:default": [],
+		"//conditions:default": [
+			"//src/power/linux:linux",
+		],
 	}),
 	visibility = ["//visibility:public"],
 )

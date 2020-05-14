@@ -2,6 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "render",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	deps = [
@@ -23,6 +24,9 @@ cc_library(
 			"//src/render/opengles2:opengles2",
 		],
 		"//conditions:default": [
+			"//src/render/opengl:opengl",
+			"//src/render/opengles:opengles",
+			"//src/render/opengles2:opengles2",
 		],
 	}),
 	visibility = ["//visibility:public"],

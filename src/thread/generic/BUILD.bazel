@@ -24,6 +24,7 @@ cc_library(
 	srcs = glob(["SDL_syscond.c"]),
 	deps = [
 		"//:SDL2internal",
+		"//src/dynapi:dynapi",
 	],
 	visibility = ["//:__subpackages__"],
 )

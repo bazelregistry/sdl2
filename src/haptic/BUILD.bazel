@@ -2,6 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "haptic",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	deps = [
@@ -16,7 +17,8 @@ cc_library(
 			"//src/haptic/darwin:darwin"
 		],
 		"//conditions:default": [
-			# "//src/haptic/linux:linux",
+			"//src/haptic/dummy:dummy",
+			"//src/haptic/linux:linux",
 		],
 	}),
 	visibility = ["//visibility:public"],

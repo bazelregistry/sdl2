@@ -106,6 +106,7 @@ cc_library(
 	hdrs = glob(["include/*.h"]),
 	includes = ["include", "src"],
 	srcs = glob(["include/*.h", "src/*.c", "src/*.h"]),
+	alwayslink = True,
 	deps = [
 		":SDL2internal",
 		"//src/atomic:atomic",

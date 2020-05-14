@@ -1,10 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-	name = "khronos",
-	alwayslink = True,
-	hdrs = glob(["**/*.h"]),
-	srcs = glob(["**/*.c"]),
+	name = "stdcpp",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
 	deps = ["//:SDL2internal"],
 	visibility = ["//:__subpackages__"],
 )

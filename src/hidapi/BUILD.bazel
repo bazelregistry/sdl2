@@ -2,6 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "hidapi",
+	alwayslink = True,
 	hdrs = glob(["*.h"]) + ["hidapi/hidapi.h"],
 	includes = ["hidapi"],
 	srcs = glob(["*.c"]),

@@ -2,6 +2,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "video",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	includes = ["khronos"],
@@ -20,6 +21,12 @@ cc_library(
 			"//src/video/cocoa:cocoa",
 		],
 		"//conditions:default": [
+			"//src/video/x11:x11",
+			"//src/video/nacl:nacl",
+			"//src/video/mir:mir",
+			"//src/video/kmsdrm:kmsdrm",
+			"//src/video/directfb:directfb",
+			"//src/video/wayland:wayland",
 		],
 	}),
 	visibility = ["//visibility:public"],

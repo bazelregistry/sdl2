@@ -1,15 +1,16 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-	name = "opengl",
+	name = "kmsdrm",
 	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
 	deps = [
 		"//:SDL2internal",
 		"//src/dynapi:dynapi",
+		"//src/video:headers",
+		"//src/events:headers",
 		"//src/video/khronos:khronos",
-		"//src/render:headers",
 	],
 	visibility = ["//:__subpackages__"],
 )
