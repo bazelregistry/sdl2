@@ -7,8 +7,6 @@ objc_library(
 	srcs = glob(["*.m"]),	includes = ["../../thread"],
 	copts = [
 		"-fno-objc-arc",
-		"-undefined",
-		"dynamic_lookup",
 	],
 	sdk_frameworks = [
 		"Cocoa",

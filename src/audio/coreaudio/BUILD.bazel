@@ -6,8 +6,6 @@ objc_library(
 	srcs = glob(["*.m"]),
 	copts = [
 		"-fno-objc-arc",
-		"-undefined",
-		"dynamic_lookup"
 	],
 	sdk_frameworks = [
 		"Audiotoolbox",

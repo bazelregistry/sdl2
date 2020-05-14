@@ -7,8 +7,6 @@ objc_library(
 	includes = ["../khronos"],
 	copts = [
 		"-fno-objc-arc",
-		"-undefined",
-		"dynamic_lookup",
 	],
 	sdk_frameworks = [
 		"Cocoa",
