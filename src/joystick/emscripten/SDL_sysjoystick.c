@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2018 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2020 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -30,7 +30,6 @@
 #include "SDL_joystick.h"
 #include "SDL_assert.h"
 #include "SDL_timer.h"
-#include "SDL_log.h"
 #include "SDL_sysjoystick_c.h"
 #include "../SDL_joystick_c.h"
 
@@ -60,7 +59,7 @@ Emscripten_JoyStickConnected(int eventType, const EmscriptenGamepadEvent *gamepa
     SDL_zerop(item);
     item->index = gamepadEvent->index;
 
-    item->name = SDL_strdup(gamepadEvent->id);
+    item->name = SDL_CreateJoystickName(0, 0, NULL, gamepadEvent->id);
     if ( item->name == NULL ) {
         SDL_free(item);
         return 1;
@@ -97,7 +96,7 @@ Emscripten_JoyStickConnected(int eventType, const EmscriptenGamepadEvent *gamepa
 
     ++numjoysticks;
 
-    SDL_PrivateJoystickAdded(numjoysticks - 1);
+    SDL_PrivateJoystickAdded(item->device_instance);
 
 #ifdef DEBUG_JOYSTICK
     SDL_Log("Number of joysticks is %d", numjoysticks);
@@ -189,12 +188,15 @@ EMSCRIPTEN_JoystickInit(void)
     EmscriptenGamepadEvent gamepadState;
 
     numjoysticks = 0;
-    numjs = emscripten_get_num_gamepads();
+
+    retval = emscripten_sample_gamepad_data();
 
     /* Check if gamepad is supported by browser */
-    if (numjs == EMSCRIPTEN_RESULT_NOT_SUPPORTED) {
+    if (retval == EMSCRIPTEN_RESULT_NOT_SUPPORTED) {
         return SDL_SetError("Gamepads not supported");
     }
+
+    numjs = emscripten_get_num_gamepads();
 
     /* handle already connected gamepads */
     if (numjs > 0) {
@@ -285,6 +287,11 @@ EMSCRIPTEN_JoystickGetDevicePlayerIndex(int device_index)
     return -1;
 }
 
+static void
+EMSCRIPTEN_JoystickSetDevicePlayerIndex(int device_index, int player_index)
+{
+}
+
 static SDL_JoystickID
 EMSCRIPTEN_JoystickGetDeviceInstanceID(int device_index)
 {
@@ -334,6 +341,8 @@ EMSCRIPTEN_JoystickUpdate(SDL_Joystick * joystick)
     EmscriptenGamepadEvent gamepadState;
     SDL_joylist_item *item = (SDL_joylist_item *) joystick->hwdata;
     int i, result, buttonState;
+
+    emscripten_sample_gamepad_data();
 
     if (item) {
         result = emscripten_get_gamepad_status(item->index, &gamepadState);
@@ -389,7 +398,7 @@ EMSCRIPTEN_JoystickGetDeviceGUID(int device_index)
 }
 
 static int
-EMSCRIPTEN_JoystickRumble(SDL_Joystick * joystick, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble, Uint32 duration_ms)
+EMSCRIPTEN_JoystickRumble(SDL_Joystick * joystick, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble)
 {
     return SDL_Unsupported();
 }
@@ -401,6 +410,7 @@ SDL_JoystickDriver SDL_EMSCRIPTEN_JoystickDriver =
     EMSCRIPTEN_JoystickDetect,
     EMSCRIPTEN_JoystickGetDeviceName,
     EMSCRIPTEN_JoystickGetDevicePlayerIndex,
+    EMSCRIPTEN_JoystickSetDevicePlayerIndex,
     EMSCRIPTEN_JoystickGetDeviceGUID,
     EMSCRIPTEN_JoystickGetDeviceInstanceID,
     EMSCRIPTEN_JoystickOpen,

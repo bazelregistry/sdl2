@@ -3,10 +3,16 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 cc_library(
 	name = "linux",
 	hdrs = glob(["*.h"]),
-	srcs = glob(["*.c"]),
+	srcs = glob(["*.c"],
+			exclude = [
+				"SDL_dbus.c",
+				"SDL_fcitx.c"
+			]
+		),
 	deps = [
 		"//:SDL2internal",
 		"//src/dynapi:dynapi",
+		"//src/events:headers",
 	],
 	visibility = ["//:__subpackages__"],
 )

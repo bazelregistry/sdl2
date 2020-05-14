@@ -589,6 +589,9 @@ XLIB
 GLES2LIB
 GLESLIB
 GLLIB
+OPENGL_TARGETS
+OPENGLES2_TARGETS
+OPENGLES1_TARGETS
 CPP
 XMKMF
 SDL_CONFIG
@@ -637,6 +640,7 @@ infodir
 docdir
 oldincludedir
 includedir
+runstatedir
 localstatedir
 sharedstatedir
 sysconfdir
@@ -717,6 +721,7 @@ datadir='${datarootdir}'
 sysconfdir='${prefix}/etc'
 sharedstatedir='${prefix}/com'
 localstatedir='${prefix}/var'
+runstatedir='${localstatedir}/run'
 includedir='${prefix}/include'
 oldincludedir='/usr/include'
 docdir='${datarootdir}/doc/${PACKAGE}'
@@ -969,6 +974,15 @@ do
   | -silent | --silent | --silen | --sile | --sil)
     silent=yes ;;
 
+  -runstatedir | --runstatedir | --runstatedi | --runstated \
+  | --runstate | --runstat | --runsta | --runst | --runs \
+  | --run | --ru | --r)
+    ac_prev=runstatedir ;;
+  -runstatedir=* | --runstatedir=* | --runstatedi=* | --runstated=* \
+  | --runstate=* | --runstat=* | --runsta=* | --runst=* | --runs=* \
+  | --run=* | --ru=* | --r=*)
+    runstatedir=$ac_optarg ;;
+
   -sbindir | --sbindir | --sbindi | --sbind | --sbin | --sbi | --sb)
     ac_prev=sbindir ;;
   -sbindir=* | --sbindir=* | --sbindi=* | --sbind=* | --sbin=* \
@@ -1106,7 +1120,7 @@ fi
 for ac_var in	exec_prefix prefix bindir sbindir libexecdir datarootdir \
 		datadir sysconfdir sharedstatedir localstatedir includedir \
 		oldincludedir docdir infodir htmldir dvidir pdfdir psdir \
-		libdir localedir mandir
+		libdir localedir mandir runstatedir
 do
   eval ac_val=\$$ac_var
   # Remove trailing slashes.
@@ -1259,6 +1273,7 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -2985,6 +3000,11 @@ fi
         MATHLIB=""
         SYS_GL_LIBS=""
         ;;
+    *-*-riscos* )
+        EXE=",e1f"
+        MATHLIB=""
+        SYS_GL_LIBS=""
+        ;;
     *)
                 ISUNIX="true"
         EXE=""
@@ -3817,6 +3837,9 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
  #include "SDL_opengl.h"
+ #ifndef SDL_VIDEO_OPENGL
+ #error SDL_VIDEO_OPENGL
+ #endif
 
 int
 main ()
@@ -3842,11 +3865,10 @@ have_opengles=no
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
- #if defined (__IPHONEOS__)
-    #include <OpenGLES/ES1/gl.h>
- #else
-    #include <GLES/gl.h>
- #endif /* __QNXNTO__ */
+ #include "SDL_opengles.h"
+ #ifndef SDL_VIDEO_OPENGL_ES
+ #error SDL_VIDEO_OPENGL_ES
+ #endif
 
 int
 main ()
@@ -3872,12 +3894,9 @@ have_opengles2=no
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
- #if defined (__IPHONEOS__)
-    #include <OpenGLES/ES2/gl.h>
-    #include <OpenGLES/ES2/glext.h>
- #else
-    #include <GLES2/gl2.h>
-    #include <GLES2/gl2ext.h>
+ #include "SDL_opengles2.h"
+ #ifndef SDL_VIDEO_OPENGL_ES2
+ #error SDL_VIDEO_OPENGL_ES2
  #endif
 
 int
@@ -3901,18 +3920,27 @@ $as_echo "$have_opengles2" >&6; }
 GLLIB=""
 GLESLIB=""
 GLES2LIB=""
+OPENGLES1_TARGETS="UNUSED"
+OPENGLES2_TARGETS="UNUSED"
+OPENGL_TARGETS="UNUSED"
 if test x$have_opengles = xyes; then
     CFLAGS="$CFLAGS -DHAVE_OPENGLES"
     GLESLIB="$XPATH -lGLESv1_CM"
+    OPENGLES1_TARGETS="TARGETS"
 fi
 if test x$have_opengles2 = xyes; then
     CFLAGS="$CFLAGS -DHAVE_OPENGLES2"
     #GLES2LIB="$XPATH -lGLESv2"
+    OPENGLES2_TARGETS="TARGETS"
 fi
 if test x$have_opengl = xyes; then
     CFLAGS="$CFLAGS -DHAVE_OPENGL"
     GLLIB="$XPATH $SYS_GL_LIBS"
+    OPENGL_TARGETS="TARGETS"
 fi
+
+
+
 
 
 

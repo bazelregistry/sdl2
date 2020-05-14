@@ -15,6 +15,11 @@ cc_library(
 		"//src/events:events",
 		"//src/video:video",
 		"//src/video/khronos:khronos",
-	],
+	] + select({
+		"//:windows": [
+			"//src/sensor/windows:windows"
+		],
+		"//conditions:default": [],
+	}),
 	visibility = ["//visibility:public"],
 )

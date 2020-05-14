@@ -8,6 +8,7 @@ cc_library(
 		"//src/dynapi:dynapi",
 		"//src/joystick:headers",
 		"//src/hidapi:hidapi",
+		"//src/thread:thread",
 	],
 	visibility = ["//:__subpackages__"],
 )

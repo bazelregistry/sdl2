@@ -11,18 +11,18 @@ cc_library(
 			"//src/events:headers",
 			"//src/video:video",
 			"//src/video/khronos:khronos",
+			"//src/joystick/virtual:virtual",
+			"//src/joystick/hidapi:SDL_hidapi",
 		] + select({
 		"//:windows": [
 			# "//src/joystick/dummy:dummy",
 			"//src/joystick/windows:windows",
-			"//src/joystick/hidapi:SDL_hidapi",
 		],
 		"//:macos": [
 			"//src/joystick/darwin:joystick_darwin",
-			"//src/joystick/hidapi:SDL_hidapi",
 		],
 		"//conditions:default": [
-			# "//src/joystick/linux:linux",
+			"//src/joystick/linux:linux",
 		],
 	}),
 	visibility = ["//visibility:public"],
