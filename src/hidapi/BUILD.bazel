@@ -12,7 +12,9 @@ cc_library(
 		"//:macos": [
 			"//src/hidapi/mac:mac"
 		],
-		"//conditions:default": [],
+		"//conditions:default": [
+			"//src/hidapi/linux:linux"
+		],
 	}),
 	visibility = ["//visibility:public"],
 )
