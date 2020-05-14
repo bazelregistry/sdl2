@@ -37,7 +37,6 @@ SDL_LINKOPTS = select({
 
 cc_library(
 	name = "SDL2_hdrs",
-	include_prefix = "SDL2",
 	hdrs = glob(["include/**/*.h"]),
 	strip_include_prefix = "include",
 	visibility = ["//visibility:public"],
@@ -77,10 +76,10 @@ apple_binary(
 )
 
 genrule(
-   name = "SDL2_dylib",
-   srcs = ["SDL2_mac"],
-   outs = ["SDL2.dylib"],
-   cmd = "cp $(location SDL2_mac) $(location SDL2.dylib)",
+	name = "SDL2_dylib",
+	srcs = ["SDL2_mac"],
+	outs = ["SDL2.dylib"],
+	cmd = "cp $(location SDL2_mac) $(location SDL2.dylib)",
 )
 
 cc_binary(

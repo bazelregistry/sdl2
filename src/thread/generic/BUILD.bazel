@@ -18,3 +18,12 @@ cc_library(
 	hdrs = glob(["*.h", "*.c"]),
 	visibility = ["//:__subpackages__"],
 )
+
+cc_library(
+	name = "syscond",
+	srcs = glob(["SDL_syscond.c"]),
+	deps = [
+		"//:SDL2internal",
+	],
+	visibility = ["//:__subpackages__"],
+)
