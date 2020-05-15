@@ -2,14 +2,21 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "filesystem",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"] + select({
+	deps = [
+		"//:SDL2internal",
+	] + select({
 		"//:windows": [
 			"//src/filesystem/windows:windows",
 		],
+		"//:macos": [
+			"//src/filesystem/cocoa:cocoa",
+		],
 		"//conditions:default": [
-			# "//src/filesystem/unix:unix",
+			"//src/filesystem/dummy:dummy",
+			"//src/filesystem/unix:unix",
 		],
 	}),
 	visibility = ["//visibility:public"],

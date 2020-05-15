@@ -3,6 +3,11 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 cc_library(
 	name = "SDL_hidapi",
 	srcs = glob(["*.c", "*.h"]),
-	deps = ["//:SDL2internal"],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/joystick:headers",
+		"//src/hidapi:hidapi",
+	],
 	visibility = ["//:__subpackages__"],
 )

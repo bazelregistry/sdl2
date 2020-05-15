@@ -2,13 +2,32 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "timer",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"] + select({
+	deps = [
+			"//:SDL2internal",
+			"//src/dynapi:dynapi",
+			"//src/thread:headers",
+			"//src/thread/pthread:headers",
+		] + select({
 		"//:windows": [
 			"//src/timer/windows:windows",
 		],
-		"//conditions:default": [],
+		"//:macos": [
+			"//src/timer/unix:unix",
+		],
+		"//conditions:default": [
+			"//src/timer/dummy:dummy",
+			"//src/timer/unix:unix",
+			"//src/thread/generic:generic",
+		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )

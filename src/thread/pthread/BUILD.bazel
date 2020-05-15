@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "pthread",
+    alwayslink = True,
+    hdrs = glob(["*.h"]),
+    srcs = glob(["*.c"]),
+    deps = [
+        "//src/dynapi:dynapi",
+        "//src/thread:headers",
+        "//src/thread/generic:headers",
+        "//:SDL2internal"
+    ] + select({
+        "//:linux": [
+            "//src/core:core"
+        ],
+        "//conditions:default" : []
+    }),
+    visibility = ["//:__subpackages__"],
+)
+
+cc_library(
+    name = "headers",
+    hdrs = glob(["*.h"]),
+    visibility = ["//:__subpackages__"],
+)
