@@ -2,8 +2,13 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "disk",
+	alwayslink = True,
 	hdrs = glob(["**/*.h"]),
 	srcs = glob(["**/*.c"]),
-	deps = ["//:SDL2internal"],
+	deps = [
+		"//:SDL2internal",
+		"//src/audio:headers",
+		"//src/dynapi:dynapi",
+	],
 	visibility = ["//:__subpackages__"],
 )

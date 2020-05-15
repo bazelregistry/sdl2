@@ -1,0 +1,12 @@
+cc_library(
+	name = "dummy",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/haptic:headers",
+	],
+	visibility = ["//:__subpackages__"],
+)

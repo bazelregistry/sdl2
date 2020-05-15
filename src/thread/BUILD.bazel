@@ -1,23 +1,29 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-MISSING_IMPL_GENERIC = select({
-	"//:windows": [
-		# Missing SDL_CreateCond, SDL_DestroyCond, SDL_CondBroadcast,
-		# SDL_CondWaitTimeout on the windows platform
-		"generic/SDL_syscond.c",
-	],
-	"//conditions:default": [],
-})
-
 cc_library(
 	name = "thread",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
-	srcs = glob(["*.c"]) + MISSING_IMPL_GENERIC,
-	deps = ["//:SDL2internal"] + select({
+	srcs = glob(["*.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+	] + select({
 		"//:windows": [
 			"//src/thread/windows:windows",
+			"//src/thread/generic:syscond",
 		],
-		"//conditions:default": [],
+		"//conditions:default": [
+			"//src/thread/stdcpp:stdcpp",
+			"//src/thread/pthread:pthread",
+			"//src/thread/generic:generic",
+		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )
