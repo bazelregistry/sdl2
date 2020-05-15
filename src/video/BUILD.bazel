@@ -2,16 +2,38 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "video",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"] + select({
-		"//:windows": [
-			"//src/video/dummy:dummy",
-			"//src/video/windows:windows",
-			"//src/video/khronos:khronos",
+	includes = ["khronos"],
+	deps = [
+			"//:SDL2internal",
 			"//src/video/yuv2rgb:yuv2rgb",
+			"//src/video/khronos:khronos",
+			"//src/video/dummy:dummy",
+			"//src/dynapi:dynapi",
+			"//src/timer:timer",
+		] + select({
+		"//:windows": [
+			"//src/video/windows:windows",
 		],
-		"//conditions:default": [],
+		"//:macos": [
+			"//src/video/cocoa:cocoa",
+		],
+		"//conditions:default": [
+			"//src/video/x11:x11",
+			"//src/video/nacl:nacl",
+			"//src/video/mir:mir",
+			"//src/video/kmsdrm:kmsdrm",
+			"//src/video/directfb:directfb",
+			"//src/video/wayland:wayland",
+		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )

@@ -1,0 +1,11 @@
+cc_library(
+	name = "linux",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+	],
+	visibility = ["//:__subpackages__"],
+)

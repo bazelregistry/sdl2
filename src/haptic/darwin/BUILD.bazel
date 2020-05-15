@@ -1,0 +1,18 @@
+cc_library(
+	name = "darwin",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/haptic:headers",
+		"//src/joystick:joystick",
+	],
+	visibility = ["//:__subpackages__"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h", "*.c"]),
+	visibility = ["//:__subpackages__"],
+)

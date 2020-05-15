@@ -9,6 +9,13 @@ cc_library(
 		"dummy/SDL_dummysensor.c",
 		"dummy/SDL_dummysensor.h",
 	],
-	deps = ["//:SDL2internal"],
+	alwayslink = True,
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/events:events",
+		"//src/video:video",
+		"//src/video/khronos:khronos",
+	],
 	visibility = ["//visibility:public"],
 )

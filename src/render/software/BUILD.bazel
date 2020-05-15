@@ -2,8 +2,21 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "software",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/render:headers",
+		"//src/video:video",
+	],
+	visibility = ["//:__subpackages__"],
+)
+
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//:__subpackages__"],
 )

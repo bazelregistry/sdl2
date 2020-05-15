@@ -2,19 +2,27 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
 	name = "audio",
+	alwayslink = True,
 	hdrs = glob(["*.h"]),
 	srcs = glob(["*.c"]),
-	deps = ["//:SDL2internal"] + select({
-		"//:windows": [
+	deps = [
+			"//:SDL2internal",
+			"//src/dynapi:dynapi",
 			"//src/audio/disk:disk",
 			"//src/audio/dummy:dummy",
+		] + select({
+		"//:windows": [
 			"//src/audio/wasapi:wasapi",
 			"//src/audio/directsound:directsound",
 			"//src/audio/winmm:SDL_winmm",
 		],
+		"//:macos": [
+			"//src/thread:thread",
+			"//src/audio/coreaudio:coreaudio",
+		],
 		"//conditions:default": [
-			"//src/audio/disk:disk",
-			"//src/audio/dummy:dummy",
+			"//src/thread:thread",
+			"//src/thread/generic:generic",
 			"//src/audio/alsa:alsa",
 			"//src/audio/jack:jack",
 			"//src/audio/esd:esd",
@@ -25,5 +33,11 @@ cc_library(
 			"//src/audio/fusionsound:fusionsound",
 		],
 	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
 	visibility = ["//visibility:public"],
 )
