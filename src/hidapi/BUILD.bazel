@@ -5,9 +5,16 @@ cc_library(
 	alwayslink = True,
 	hdrs = glob(["*.h"]) + ["hidapi/hidapi.h"],
 	includes = ["hidapi"],
-	srcs = glob(
-		["*.c"],
-	),
+	srcs = select({
+		"//:windows": glob(
+			["*.c"],
+			exclude=["SDL_hidapi.c"]
+		),
+		"//:macos": glob(
+			["*.c"],
+		),
+		"//conditions:default": ["*.c"],
+	}),
 	deps = ["//:SDL2internal"] + select({
 		"//:windows": [
 			"//src/hidapi/windows:windows"
