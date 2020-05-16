@@ -28,7 +28,7 @@ LIBTOOL = @LIBTOOL@
 INSTALL = @INSTALL@
 AR	= @AR@
 RANLIB	= @RANLIB@
-WINDRES	= @WINDRES@
+RC	= @RC@
 
 TARGET  = libSDL2.la
 OBJECTS = @OBJECTS@
@@ -44,7 +44,9 @@ SDLTEST_OBJECTS = @SDLTEST_OBJECTS@
 
 WAYLAND_SCANNER = @WAYLAND_SCANNER@
 
-SRC_DIST = *.txt acinclude Android.mk autogen.sh android-project build-scripts cmake cmake_uninstall.cmake.in configure configure.in debian docs include Makefile.* sdl2-config.cmake.in sdl2-config.in sdl2.m4 sdl2.pc.in SDL2.spec.in SDL2Config.cmake src test VisualC.html VisualC VisualC-WinRT Xcode Xcode-iOS wayland-protocols
+INSTALL_SDL2_CONFIG = @INSTALL_SDL2_CONFIG@
+
+SRC_DIST = *.txt acinclude Android.mk autogen.sh android-project build-scripts cmake cmake_uninstall.cmake.in configure configure.ac debian docs include Makefile.* sdl2-config.cmake.in sdl2-config-version.cmake.in sdl2-config.in sdl2.m4 sdl2.pc.in SDL2.spec.in SDL2Config.cmake src test VisualC.html VisualC VisualC-WinRT Xcode Xcode-iOS wayland-protocols
 GEN_DIST = SDL2.spec
 
 ifneq ($V,1)
@@ -53,6 +55,7 @@ RUN_CMD_CC     = @echo "  CC    " $@;
 RUN_CMD_CXX    = @echo "  CXX   " $@;
 RUN_CMD_LTLINK = @echo "  LTLINK" $@;
 RUN_CMD_RANLIB = @echo "  RANLIB" $@;
+RUN_CMD_RC     = @echo "  RC    " $@;
 RUN_CMD_GEN    = @echo "  GEN   " $@;
 LIBTOOL += --quiet
 endif
@@ -79,9 +82,11 @@ HDRS = \
 	SDL_keyboard.h \
 	SDL_keycode.h \
 	SDL_loadso.h \
+	SDL_locale.h \
 	SDL_log.h \
 	SDL_main.h \
 	SDL_messagebox.h \
+	SDL_metal.h \
 	SDL_mouse.h \
 	SDL_mutex.h \
 	SDL_name.h \
@@ -125,9 +130,9 @@ LT_RELEASE  = @LT_RELEASE@
 LT_REVISION = @LT_REVISION@
 LT_LDFLAGS  = -no-undefined -rpath $(libdir) -release $(LT_RELEASE) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
 
-all: $(srcdir)/configure Makefile $(objects) $(objects)/$(TARGET) $(objects)/$(SDLMAIN_TARGET) $(objects)/$(SDLTEST_TARGET)
+all: $(srcdir)/configure Makefile $(objects)/$(TARGET) $(objects)/$(SDLMAIN_TARGET) $(objects)/$(SDLTEST_TARGET)
 
-$(srcdir)/configure: $(srcdir)/configure.in
+$(srcdir)/configure: $(srcdir)/configure.ac
 	@echo "Warning, configure is out of date, please re-run autogen.sh"
 
 Makefile: $(srcdir)/Makefile.in
@@ -135,8 +140,9 @@ Makefile: $(srcdir)/Makefile.in
 
 Makefile.in:;
 
-$(objects):
-	$(SHELL) $(auxdir)/mkinstalldirs $@
+$(objects)/.created:
+	$(SHELL) $(auxdir)/mkinstalldirs $(objects)
+	touch $@
 
 update-revision:
 	$(SHELL) $(auxdir)/updaterev.sh
@@ -154,8 +160,11 @@ $(objects)/$(SDLTEST_TARGET): $(SDLTEST_OBJECTS)
 
 install: all install-bin install-hdrs install-lib install-data
 install-bin:
+ifeq ($(INSTALL_SDL2_CONFIG),TRUE)
 	$(SHELL) $(auxdir)/mkinstalldirs $(DESTDIR)$(bindir)
 	$(INSTALL) -m 755 sdl2-config $(DESTDIR)$(bindir)/sdl2-config
+endif
+
 install-hdrs: update-revision
 	$(SHELL) $(auxdir)/mkinstalldirs $(DESTDIR)$(includedir)/SDL2
 	for file in $(HDRS) $(SDLTEST_HDRS); do \
@@ -178,8 +187,11 @@ install-data:
 	$(INSTALL) -m 644 $(srcdir)/sdl2.m4 $(DESTDIR)$(datadir)/aclocal/sdl2.m4
 	$(SHELL) $(auxdir)/mkinstalldirs $(DESTDIR)$(libdir)/pkgconfig
 	$(INSTALL) -m 644 sdl2.pc $(DESTDIR)$(libdir)/pkgconfig
+ifeq ($(INSTALL_SDL2_CONFIG),TRUE)
 	$(SHELL) $(auxdir)/mkinstalldirs $(DESTDIR)$(libdir)/cmake/SDL2
 	$(INSTALL) -m 644 sdl2-config.cmake $(DESTDIR)$(libdir)/cmake/SDL2
+	$(INSTALL) -m 644 sdl2-config-version.cmake $(DESTDIR)$(libdir)/cmake/SDL2
+endif
 
 uninstall: uninstall-bin uninstall-hdrs uninstall-lib uninstall-data
 uninstall-bin:
@@ -199,6 +211,7 @@ uninstall-data:
 	rm -f $(DESTDIR)$(datadir)/aclocal/sdl2.m4
 	rm -f $(DESTDIR)$(libdir)/pkgconfig/sdl2.pc
 	rm -f $(DESTDIR)$(libdir)/cmake/SDL2/sdl2-config.cmake
+	rm -f $(DESTDIR)$(libdir)/cmake/SDL2/sdl2-config-version.cmake
 
 clean:
 	rm -rf $(objects)

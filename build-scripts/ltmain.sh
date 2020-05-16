@@ -5099,14 +5099,7 @@ func_mode_link ()
       # we shouldn't force the makefile maintainer to figure out
       # which system we are compiling for in order to pass an extra
       # flag for every libtool invocation.
-      # allow_undefined=no
-
-      # FIXME: Unfortunately, there are problems with the above when trying
-      # to make a dll which has undefined symbols, in which case not
-      # even a static library is built.  For now, we need to specify
-      # -no-undefined on the libtool link line when we can be certain
-      # that all symbols are satisfied, otherwise we get a static library.
-      allow_undefined=yes
+      allow_undefined=no
       ;;
     *)
       allow_undefined=yes
@@ -7404,11 +7397,8 @@ func_mode_link ()
 	  # Darwin ld doesn't like 0 for these options...
 	  func_arith $current + 1
 	  minor_current=$func_arith_result
-	  #xlcverstring="${wl}-compatibility_version ${wl}$minor_current ${wl}-current_version ${wl}$minor_current.$revision"
-	  #verstring="-compatibility_version $minor_current -current_version $minor_current.$revision"
-	  # make the compatibility version match the Xcode project files, i.e. 1.0
-	  xlcverstring="${wl}-compatibility_version 1.0 ${wl}-current_version ${wl}$minor_current.$revision"
-	  verstring="-compatibility_version 1.0 -current_version $minor_current.$revision"
+	  xlcverstring="${wl}-compatibility_version ${wl}$minor_current ${wl}-current_version ${wl}$minor_current.$revision"
+	  verstring="-compatibility_version $minor_current -current_version $minor_current.$revision"
 	  ;;
 
 	freebsd-aout)

@@ -13,14 +13,14 @@ cc_library(
 			"//src/video:video",
 			"//src/video/khronos:khronos",
 			"//src/joystick/dummy:dummy",
+			"//src/joystick/virtual:virtual",
+			"//src/joystick/hidapi:SDL_hidapi",
 		] + select({
 		"//:windows": [
 			"//src/joystick/windows:windows",
-			"//src/joystick/hidapi:SDL_hidapi",
 		],
 		"//:macos": [
 			"//src/joystick/darwin:joystick_darwin",
-			"//src/joystick/hidapi:SDL_hidapi",
 		],
 		"//conditions:default": [
 			"//src/joystick/linux:linux",
