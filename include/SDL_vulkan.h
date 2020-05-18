@@ -153,7 +153,7 @@ extern DECLSPEC void SDLCALL SDL_Vulkan_UnloadLibrary(void);
  *  is smaller than the number of required extensions, \c SDL_FALSE will be
  *  returned instead of \c SDL_TRUE, to indicate that not all the required
  *  extensions were returned.
- * 
+ *
  *  \note If \c window is not NULL, it will be checked against its creation
  *        flags to ensure that the Vulkan flag is present. This parameter
  *        will be removed in a future major release.

@@ -122,6 +122,7 @@ cc_library(
 		"//src/joystick:joystick",
 		"//src/libm:libm",
 		"//src/loadso:loadso",
+		"//src/locale:locale",
 		"//src/main:main",
 		"//src/power:power",
 		"//src/render:render",
