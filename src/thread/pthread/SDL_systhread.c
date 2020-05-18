@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2018 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2020 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -20,6 +20,7 @@
 */
 
 #include "../../SDL_internal.h"
+#include "SDL_system.h"
 
 #include <pthread.h>
 
@@ -46,7 +47,6 @@
 #endif
 #endif
 
-#include "SDL_log.h"
 #include "SDL_platform.h"
 #include "SDL_thread.h"
 #include "../SDL_thread_c.h"
@@ -75,7 +75,7 @@ RunThread(void *data)
 #ifdef __ANDROID__
     Android_JNI_SetupThread();
 #endif
-    SDL_RunThread(data);
+    SDL_RunThread((SDL_Thread *) data);
     return NULL;
 }
 
@@ -87,7 +87,7 @@ static SDL_bool checked_setname = SDL_FALSE;
 static int (*ppthread_setname_np)(pthread_t, const char*) = NULL;
 #endif
 int
-SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
+SDL_SYS_CreateThread(SDL_Thread * thread)
 {
     pthread_attr_t type;
 
@@ -112,11 +112,11 @@ SDL_SYS_CreateThread(SDL_Thread * thread, void *args)
     
     /* Set caller-requested stack size. Otherwise: use the system default. */
     if (thread->stacksize) {
-        pthread_attr_setstacksize(&type, (size_t) thread->stacksize);
+        pthread_attr_setstacksize(&type, thread->stacksize);
     }
 
     /* Create the thread and go! */
-    if (pthread_create(&thread->handle, &type, RunThread, args) != 0) {
+    if (pthread_create(&thread->handle, &type, RunThread, thread) != 0) {
         return SDL_SetError("Not enough resources to create thread");
     }
 
@@ -184,88 +184,10 @@ SDL_ThreadID(void)
     return ((SDL_threadID) pthread_self());
 }
 
-#if __LINUX__
-/* d-bus queries to org.freedesktop.RealtimeKit1. */
-#if SDL_USE_LIBDBUS
-
-#define RTKIT_DBUS_NODE "org.freedesktop.RealtimeKit1"
-#define RTKIT_DBUS_PATH "/org/freedesktop/RealtimeKit1"
-#define RTKIT_DBUS_INTERFACE "org.freedesktop.RealtimeKit1"
-
-static pthread_once_t rtkit_initialize_once = PTHREAD_ONCE_INIT;
-static Sint32 rtkit_min_nice_level = -20;
-
-static void
-rtkit_initialize()
-{
-    SDL_DBusContext *dbus = SDL_DBus_GetContext();
-
-    /* Try getting minimum nice level: this is often greater than PRIO_MIN (-20). */
-    if (!dbus || !SDL_DBus_QueryPropertyOnConnection(dbus->system_conn, RTKIT_DBUS_NODE, RTKIT_DBUS_PATH, RTKIT_DBUS_INTERFACE, "MinNiceLevel",
-                                            DBUS_TYPE_INT32, &rtkit_min_nice_level)) {
-        rtkit_min_nice_level = -20;
-    }
-}
-
-static SDL_bool
-rtkit_setpriority(pid_t thread, int nice_level)
-{
-    Uint64 ui64 = (Uint64)thread;
-    Sint32 si32 = (Sint32)nice_level;
-    SDL_DBusContext *dbus = SDL_DBus_GetContext();
-
-    pthread_once(&rtkit_initialize_once, rtkit_initialize);
-
-    if (si32 < rtkit_min_nice_level)
-        si32 = rtkit_min_nice_level;
-
-    if (!dbus || !SDL_DBus_CallMethodOnConnection(dbus->system_conn,
-            RTKIT_DBUS_NODE, RTKIT_DBUS_PATH, RTKIT_DBUS_INTERFACE, "MakeThreadHighPriority",
-            DBUS_TYPE_UINT64, &ui64, DBUS_TYPE_INT32, &si32, DBUS_TYPE_INVALID,
-            DBUS_TYPE_INVALID)) {
-        return SDL_FALSE;
-    }
-    return SDL_TRUE;
-}
-
-#else
-
-static SDL_bool
-rtkit_setpriority(pid_t thread, int nice_level)
-{
-    return SDL_FALSE;
-}
-
-#endif /* !SDL_USE_LIBDBUS */
-
-int
-SDL_LinuxSetThreadPriority(Sint64 threadID, int priority)
-{
-    if (setpriority(PRIO_PROCESS, (id_t)threadID, priority) < 0) {
-        /* Note that this fails if you're trying to set high priority
-           and you don't have root permission. BUT DON'T RUN AS ROOT!
-
-           You can grant the ability to increase thread priority by
-           running the following command on your application binary:
-               sudo setcap 'cap_sys_nice=eip' <application>
-
-           Let's try setting priority with RealtimeKit...
-
-           README and sample code at:
-             http://git.0pointer.net/rtkit.git
-         */
-        if (rtkit_setpriority((pid_t)threadID, priority) == SDL_FALSE) {
-            return SDL_SetError("setpriority() failed");
-        }
-    }
-    return 0;
-}
-#endif /* __LINUX__ */
-
 int
 SDL_SYS_SetThreadPriority(SDL_ThreadPriority priority)
 {
-#if __NACL__ 
+#if __NACL__ || __RISCOS__
     /* FIXME: Setting thread priority does not seem to be supported in NACL */
     return 0;
 #elif __LINUX__
@@ -297,9 +219,22 @@ SDL_SYS_SetThreadPriority(SDL_ThreadPriority priority)
     } else {
         int min_priority = sched_get_priority_min(policy);
         int max_priority = sched_get_priority_max(policy);
-        sched.sched_priority = (min_priority + (max_priority - min_priority) / 2);
-        if (priority == SDL_THREAD_PRIORITY_HIGH) {
-            sched.sched_priority += ((max_priority - min_priority) / 4);
+
+#if defined(__MACOSX__) || defined(__IPHONEOS__) || defined(__TVOS__)
+        if (min_priority == 15 && max_priority == 47) {
+            /* Apple has a specific set of thread priorities */
+            if (priority == SDL_THREAD_PRIORITY_HIGH) {
+                sched.sched_priority = 45;
+            } else {
+                sched.sched_priority = 37;
+            }
+        } else
+#endif /* __MACOSX__ || __IPHONEOS__ || __TVOS__ */
+        {
+            sched.sched_priority = (min_priority + (max_priority - min_priority) / 2);
+            if (priority == SDL_THREAD_PRIORITY_HIGH) {
+                sched.sched_priority += ((max_priority - min_priority) / 4);
+            }
         }
     }
     if (pthread_setschedparam(thread, policy, &sched) != 0) {

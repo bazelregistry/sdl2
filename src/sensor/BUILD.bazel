@@ -16,6 +16,15 @@ cc_library(
 		"//src/events:events",
 		"//src/video:video",
 		"//src/video/khronos:khronos",
-	],
+	] + select({
+		"//:windows": [
+			"//src/sensor/windows:windows"
+		],
+		"//:macos": [
+			"//src/sensor/coremotion:coremotion",
+		],
+		"//conditions:default": [
+		],
+	}),
 	visibility = ["//visibility:public"],
 )
