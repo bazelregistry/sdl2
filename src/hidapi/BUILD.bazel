@@ -13,7 +13,7 @@ cc_library(
 		"//:macos": glob(
 			["*.c"],
 		),
-		"//conditions:default": ["*.c"],
+		"//conditions:default": glob(["*.c"]),
 	}),
 	deps = ["//:SDL2internal"] + select({
 		"//:windows": [
