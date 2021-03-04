@@ -1,4 +1,4 @@
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_binary")
 
 alias(
 	name = "windows",
@@ -131,6 +131,7 @@ cc_library(
 		"//src/thread:thread",
 		"//src/timer:timer",
 		"//src/video:video",
+		"//src/misc:misc",
 	],
 	visibility = ["//visibility:public"],
 )
