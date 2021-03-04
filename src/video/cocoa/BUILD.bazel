@@ -1,0 +1,33 @@
+load("@rules_cc//cc:defs.bzl", "objc_library")
+
+objc_library(
+	name = "cocoa",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.m"]),
+	includes = ["../khronos"],
+	copts = [
+		"-fno-objc-arc",
+	],
+	sdk_frameworks = [
+		"Cocoa",
+		"Carbon",
+		"IOKit",
+		"CoreVideo",
+		"OpenGL",
+		"Metal",
+	],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/video:headers",
+		"//src/events:headers",
+		"//src/video/khronos:khronos",
+	],
+	visibility = ["//:__subpackages__"],
+)
+
+objc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
+	visibility = ["//:__subpackages__"],
+)

@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "atomic",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	visibility = ["//visibility:public"],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+	],
+)

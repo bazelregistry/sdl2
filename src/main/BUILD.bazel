@@ -1,0 +1,18 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "main",
+	alwayslink = True,
+	deps = ["//:SDL2internal"] + select({
+		"//:windows": [
+			"//src/main/windows:windows",
+		],
+		"//:macos": [
+			"//src/main/dummy:dummy",
+		],
+		"//conditions:default": [
+			"//src/main/dummy:dummy",
+		],
+	}),
+	visibility = ["//visibility:public"],
+)

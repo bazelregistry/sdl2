@@ -1,0 +1,23 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "events",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/joystick:joystick",
+		"//src/video:video",
+		"//src/timer:timer",
+		"//src/video/khronos:khronos",
+	],
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
+	visibility = ["//visibility:public"],
+)

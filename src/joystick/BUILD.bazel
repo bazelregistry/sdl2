@@ -1,0 +1,36 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "joystick",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	alwayslink = True,
+	deps = [
+			"//:SDL2internal",
+			"//src/dynapi:dynapi",
+			"//src/thread:thread",
+			"//src/events:headers",
+			"//src/video:video",
+			"//src/video/khronos:khronos",
+			"//src/joystick/dummy:dummy",
+			"//src/joystick/virtual:virtual",
+			"//src/joystick/hidapi:SDL_hidapi",
+		] + select({
+		"//:windows": [
+			"//src/joystick/windows:windows",
+		],
+		"//:macos": [
+			"//src/joystick/darwin:joystick_darwin",
+		],
+		"//conditions:default": [
+			"//src/joystick/linux:linux",
+		],
+	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
+	visibility = ["//visibility:public"],
+)

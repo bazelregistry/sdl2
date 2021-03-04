@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "dummy",
+	srcs = ["SDL_sysjoystick.c"],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/joystick:headers",
+	],
+	visibility = ["//:__subpackages__"],
+)

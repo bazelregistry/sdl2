@@ -1,0 +1,30 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "generic",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/thread:headers",
+		"//src/thread/pthread:headers",
+	],
+	visibility = ["//:__subpackages__"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h", "*.c"]),
+	visibility = ["//:__subpackages__"],
+)
+
+cc_library(
+	name = "syscond",
+	srcs = glob(["SDL_syscond.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+	],
+	visibility = ["//:__subpackages__"],
+)

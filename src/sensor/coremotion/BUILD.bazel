@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+objc_library(
+	name = "coremotion",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.m"]),
+	copts = [
+		"-fno-objc-arc",
+	],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/audio:headers",
+		"//src/thread:thread",
+	],
+	visibility = ["//:__subpackages__"],
+)

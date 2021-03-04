@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "locale",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = ["//:SDL2internal"] + select({
+		"//:windows": [
+			"//src/locale/windows:windows"
+		],
+		"//:macos": [
+			"//src/locale/macosx:macosx",
+		],
+		"//conditions:default": [
+			"//src/locale/unix:unix",
+		],
+	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
+	visibility = ["//visibility:public"],
+)
