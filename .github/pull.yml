@@ -1,0 +1,7 @@
+version: "1"
+rules:
+- base: main
+  upstream: libsdl-org:SDL
+  mergeMethod: merge
+  conflictReviewers:
+  - zaucy
