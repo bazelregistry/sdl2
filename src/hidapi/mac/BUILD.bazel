@@ -1,0 +1,20 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "mac",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	includes = ["../hidapi"],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/hidapi:headers"
+	],
+	visibility = ["//:__subpackages__"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h", "*.c"]),
+	visibility = ["//:__subpackages__"],
+)

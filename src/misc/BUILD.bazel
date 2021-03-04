@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "misc",
+	alwayslink = True,
+	includes = ["misc"],
+	srcs = glob(["*.c"]),
+	deps = ["//:SDL2internal", ":headers"] + select({
+		"//:windows": ["//src/misc/windows"],
+		"//conditions:default": ["//src/misc/unix"],
+	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
+	visibility = ["//:__subpackages__"],
+)

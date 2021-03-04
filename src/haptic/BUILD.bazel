@@ -1,0 +1,32 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "haptic",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = [
+			"//:SDL2internal",
+			"//src/dynapi:dynapi",
+			"//src/joystick:joystick",
+		] + select({
+		"//:windows": [
+			"//src/haptic/windows:windows"
+		],
+		"//:macos": [
+			"//src/haptic/darwin:darwin"
+		],
+		"//conditions:default": [
+			"//src/haptic/dummy:dummy",
+			"//src/haptic/linux:linux",
+		],
+	}),
+	visibility = ["//visibility:public"],
+)
+
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
+	visibility = ["//visibility:public"],
+)

@@ -1,0 +1,37 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "hidapi",
+	alwayslink = True,
+	hdrs = glob(["*.h"]) + ["hidapi/hidapi.h"],
+	includes = ["hidapi"],
+	srcs = select({
+		"//:windows": glob(
+			["*.c"],
+			exclude=["SDL_hidapi.c"]
+		),
+		"//:macos": glob(
+			["*.c"],
+		),
+		"//conditions:default": glob(["*.c"]),
+	}),
+	deps = ["//:SDL2internal"] + select({
+		"//:windows": [
+			"//src/hidapi/windows:windows"
+		],
+		"//:macos": [
+			"//src/hidapi/mac:mac",
+			"//src/hidapi/mac:headers"
+		],
+		"//conditions:default": [
+			"//src/hidapi/linux:linux"
+		],
+	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]) + ["hidapi/hidapi.h"],
+	visibility = ["//visibility:public"],
+)

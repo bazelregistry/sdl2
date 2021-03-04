@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "windows",
+	alwayslink = True,
+	srcs = glob(["*.c"]),
+    deps = [
+        "//src/misc:headers",
+        "//src/core/windows",
+    ],
+	visibility = ["//:__subpackages__"],
+)

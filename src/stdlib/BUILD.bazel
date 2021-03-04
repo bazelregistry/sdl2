@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "stdlib",
+	alwayslink = True,
+	srcs = glob(["*.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/libm:libm",
+		"//src/atomic:atomic",
+	],
+	visibility = ["//visibility:public"],
+)

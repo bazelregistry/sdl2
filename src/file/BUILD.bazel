@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "file",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+	] + select({
+		"//:windows": [
+		],
+		"//:macos": [
+			"//src/file/cocoa:cocoa",
+		],
+		"//conditions:default": [
+		],
+	}),
+	visibility = ["//visibility:public"],
+)

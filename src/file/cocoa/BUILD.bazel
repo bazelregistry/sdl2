@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+
+objc_library(
+	name = "cocoa",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.m"]),	includes = ["../../thread"],
+	copts = [
+		"-fno-objc-arc",
+	],
+	sdk_frameworks = [
+		"Cocoa",
+	],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+	],
+	visibility = ["//:__subpackages__"],
+)

@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "opengles2",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	includes = ["../../video/khronos"],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/video:video",
+		"//src/video/khronos:khronos",
+		"//src/render:headers",
+	],
+	visibility = ["//:__subpackages__"],
+)

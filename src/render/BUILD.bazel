@@ -1,0 +1,39 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "render",
+	alwayslink = True,
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	deps = [
+			"//:SDL2internal",
+			"//src/dynapi:dynapi",
+			"//src/render/software:software",
+		] + select({
+		"//:windows": [
+			"//src/render/direct3d:direct3d",
+			"//src/render/direct3d11:direct3d11",
+			"//src/render/opengl:opengl",
+			"//src/render/opengles:opengles",
+			"//src/render/opengles2:opengles2",
+		],
+		"//:macos": [
+			"//src/render/metal:metal",
+			"//src/render/opengl:opengl",
+			"//src/render/opengles:opengles",
+			"//src/render/opengles2:opengles2",
+		],
+		"//conditions:default": [
+			"//src/render/opengl:opengl",
+			"//src/render/opengles:opengles",
+			"//src/render/opengles2:opengles2",
+		],
+	}),
+	visibility = ["//visibility:public"],
+)
+
+cc_library(
+	name = "headers",
+	hdrs = glob(["*.h"]),
+	visibility = ["//visibility:public"],
+)

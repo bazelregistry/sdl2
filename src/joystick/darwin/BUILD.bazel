@@ -1,0 +1,18 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+objc_library(
+	name = "joystick_darwin",
+	hdrs = glob(["*.h"]),
+	srcs = glob(["*.c"]),
+	sdk_frameworks = [
+		"ForceFeedback",
+	],
+	deps = [
+		"//:SDL2internal",
+		"//src/dynapi:dynapi",
+		"//src/joystick:headers",
+		"//src/joystick/hidapi:SDL_hidapi",
+		"//src/haptic/darwin:headers",
+	],
+	visibility = ["//:__subpackages__"],
+)
