@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Sam Lantinga slouken@libsdl.org">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Linux - SDL</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Linux";
+    var mkdocs_page_input_path = "README-linux.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> SDL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">General</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-cmake/">CMake</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-git/">Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-hg/">HG</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-visualc/">VisualC</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-kmsbsd/">KMSDRN</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-porting/">Porting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-directfb/">DirectFB</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-dynapi/">DynAPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-gesture/">Gestures</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-touch/">Touch</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Platform</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../README-platforms/">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-android/">Android</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-emscripten/">Empscripten</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#build-dependencies">Build Dependencies</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#joystick-does-not-work">Joystick does not work</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-macosx/">OS X</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-ios/">iOS</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-nacl/">NativeClient</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-os2/">OS2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-pandora/">Pandora</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-psp/">PSP</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-raspberrypi/">Raspberry Pi</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-wince/">WinCE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-windows/">Windows</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-winrt/">WinRT</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">SDL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Platform &raquo;</li>
+        
+      
+    
+    <li>Linux</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/libsdl-org/SDL/edit/master/docs/README-linux.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="linux">Linux</h1>
+<p>By default SDL will only link against glibc, the rest of the features will be
+enabled dynamically at runtime depending on the available features on the target
+system. So, for example if you built SDL with Xinerama support and the target
+system does not have the Xinerama libraries installed, it will be disabled
+at runtime, and you won't get a missing library error, at least with the 
+default configuration parameters.</p>
+<h2 id="build-dependencies">Build Dependencies</h2>
+<p>Ubuntu 20.04, all available features enabled:</p>
+<pre><code>sudo apt-get install build-essential git make cmake autoconf automake \
+libtool pkg-config libasound2-dev libpulse-dev libaudio-dev libjack-dev \
+libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev \
+libxinerama-dev libxxf86vm-dev libxss-dev libgl1-mesa-dev libdbus-1-dev \
+libudev-dev libgles2-mesa-dev libegl1-mesa-dev libibus-1.0-dev \
+fcitx-libs-dev libsamplerate0-dev libsndio-dev libwayland-dev \
+libxkbcommon-dev libdrm-dev libgbm-dev
+</code></pre>
+<p>NOTES:
+- This includes all the audio targets except arts and esd, because Ubuntu
+  (and/or Debian) pulled their packages, but in theory SDL still supports them.
+- libsamplerate0-dev lets SDL optionally link to libresamplerate at runtime
+  for higher-quality audio resampling. SDL will work without it if the library
+  is missing, so it's safe to build in support even if the end user doesn't
+  have this library installed.
+- DirectFB isn't included because the configure script (currently) fails to find
+  it at all. You can do "sudo apt-get install libdirectfb-dev" and fix the 
+  configure script to include DirectFB support. Send patches.  :)</p>
+<h2 id="joystick-does-not-work">Joystick does not work</h2>
+<p>If you compiled or are using a version of SDL with udev support (and you should!)
+there's a few issues that may cause SDL to fail to detect your joystick. To
+debug this, start by installing the evtest utility. On Ubuntu/Debian:</p>
+<pre><code>sudo apt-get install evtest
+</code></pre>
+<p>Then run:</p>
+<pre><code>sudo evtest
+</code></pre>
+<p>You'll hopefully see your joystick listed along with a name like "/dev/input/eventXX"
+Now run:</p>
+<pre><code>cat /dev/input/event/XX
+</code></pre>
+<p>If you get a permission error, you need to set a udev rule to change the mode of
+your device (see below)    </p>
+<p>Also, try:</p>
+<pre><code>sudo udevadm info --query=all --name=input/eventXX
+</code></pre>
+<p>If you see a line stating ID_INPUT_JOYSTICK=1, great, if you don't see it,
+you need to set up an udev rule to force this variable.</p>
+<p>A combined rule for the Saitek Pro Flight Rudder Pedals to fix both issues looks 
+like:</p>
+<pre><code>SUBSYSTEM=="input", ATTRS{idProduct}=="0763", ATTRS{idVendor}=="06a3", MODE="0666", ENV{ID_INPUT_JOYSTICK}="1"
+SUBSYSTEM=="input", ATTRS{idProduct}=="0764", ATTRS{idVendor}=="06a3", MODE="0666", ENV{ID_INPUT_JOYSTICK}="1"
+</code></pre>
+<p>You can set up similar rules for your device by changing the values listed in
+idProduct and idVendor. To obtain these values, try:</p>
+<pre><code>sudo udevadm info -a --name=input/eventXX | grep idVendor
+sudo udevadm info -a --name=input/eventXX | grep idProduct
+</code></pre>
+<p>If multiple values come up for each of these, the one you want is the first one of each.    </p>
+<p>On other systems which ship with an older udev (such as CentOS), you may need
+to set up a rule such as:</p>
+<pre><code>SUBSYSTEM=="input", ENV{ID_CLASS}=="joystick", ENV{ID_INPUT_JOYSTICK}="1"
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../README-macosx/" class="btn btn-neutral float-right" title="OS X">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../README-emscripten/" class="btn btn-neutral" title="Empscripten"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/libsdl-org/SDL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../README-emscripten/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../README-macosx/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

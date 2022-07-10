@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Sam Lantinga slouken@libsdl.org">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Windows - SDL</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Windows";
+    var mkdocs_page_input_path = "README-windows.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> SDL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">General</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-cmake/">CMake</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-git/">Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-hg/">HG</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-visualc/">VisualC</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-kmsbsd/">KMSDRN</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-porting/">Porting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-directfb/">DirectFB</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-dynapi/">DynAPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-gesture/">Gestures</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-touch/">Touch</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Platform</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../README-platforms/">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-android/">Android</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-emscripten/">Empscripten</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-macosx/">OS X</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-ios/">iOS</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-nacl/">NativeClient</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-os2/">OS2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-pandora/">Pandora</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-psp/">PSP</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-raspberrypi/">Raspberry Pi</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-wince/">WinCE</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Windows</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-winrt/">WinRT</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">SDL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Platform &raquo;</li>
+        
+      
+    
+    <li>Windows</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/libsdl-org/SDL/edit/master/docs/README-windows.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="windows">Windows</h1>
+<p>================================================================================
+OpenGL ES 2.x support
+================================================================================</p>
+<p>SDL has support for OpenGL ES 2.x under Windows via two alternative 
+implementations. 
+The most straightforward method consists in running your app in a system with 
+a graphic card paired with a relatively recent (as of November of 2013) driver 
+which supports the WGL_EXT_create_context_es2_profile extension. Vendors known 
+to ship said extension on Windows currently include nVidia and Intel.</p>
+<p>The other method involves using the ANGLE library (https://code.google.com/p/angleproject/)
+If an OpenGL ES 2.x context is requested and no WGL_EXT_create_context_es2_profile
+extension is found, SDL will try to load the libEGL.dll library provided by
+ANGLE.
+To obtain the ANGLE binaries, you can either compile from source from
+https://chromium.googlesource.com/angle/angle or copy the relevant binaries from
+a recent Chrome/Chromium install for Windows. The files you need are:</p>
+<pre><code>* libEGL.dll
+* libGLESv2.dll
+* d3dcompiler_46.dll (supports Windows Vista or later, better shader compiler)
+or...
+* d3dcompiler_43.dll (supports Windows XP or later)
+</code></pre>
+<p>If you compile ANGLE from source, you can configure it so it does not need the
+d3dcompiler_* DLL at all (for details on this, see their documentation). 
+However, by default SDL will try to preload the d3dcompiler_46.dll to
+comply with ANGLE's requirements. If you wish SDL to preload d3dcompiler_43.dll (to
+support Windows XP) or to skip this step at all, you can use the 
+SDL_HINT_VIDEO_WIN_D3DCOMPILER hint (see SDL_hints.h for more details).</p>
+<p>Known Bugs:</p>
+<pre><code>* SDL_GL_SetSwapInterval is currently a no op when using ANGLE. It appears
+  that there's a bug in the library which prevents the window contents from
+  refreshing if this is set to anything other than the default value.
+</code></pre>
+<h1 id="vulkan-surface-support">Vulkan Surface Support</h1>
+<p>Support for creating Vulkan surfaces is configured on by default. To disable it change the value of <code>SDL_VIDEO_VULKAN</code> to 0 in <code>SDL_config_windows.h</code>. You must install the <a href="https://www.lunarg.com/vulkan-sdk/">Vulkan SDK</a> in order to use Vulkan graphics in your application.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../README-winrt/" class="btn btn-neutral float-right" title="WinRT">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../README-wince/" class="btn btn-neutral" title="WinCE"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/libsdl-org/SDL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../README-wince/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../README-winrt/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

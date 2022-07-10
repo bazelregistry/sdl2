@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Sam Lantinga slouken@libsdl.org">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>NativeClient - SDL</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "NativeClient";
+    var mkdocs_page_input_path = "README-nacl.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> SDL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">General</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-cmake/">CMake</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-git/">Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-hg/">HG</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-visualc/">VisualC</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-kmsbsd/">KMSDRN</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-porting/">Porting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-directfb/">DirectFB</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-dynapi/">DynAPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-gesture/">Gestures</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-touch/">Touch</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Platform</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../README-platforms/">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-android/">Android</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-emscripten/">Empscripten</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-macosx/">OS X</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-ios/">iOS</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">NativeClient</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-os2/">OS2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-pandora/">Pandora</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-psp/">PSP</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-raspberrypi/">Raspberry Pi</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-wince/">WinCE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-windows/">Windows</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-winrt/">WinRT</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">SDL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Platform &raquo;</li>
+        
+      
+    
+    <li>NativeClient</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/libsdl-org/SDL/edit/master/docs/README-nacl.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="native-client">Native Client</h1>
+<p>Requirements: </p>
+<ul>
+<li>Native Client SDK (https://developer.chrome.com/native-client), 
+  (tested with Pepper version 33 or higher).</li>
+</ul>
+<p>The SDL backend for Chrome's Native Client has been tested only with the PNaCl
+toolchain, which generates binaries designed to run on ARM and x86_32/64 
+platforms. This does not mean it won't work with the other toolchains!</p>
+<p>================================================================================
+Building SDL for NaCl
+================================================================================</p>
+<p>Set up the right environment variables (see naclbuild.sh), then configure SDL with:</p>
+<pre><code>configure --host=pnacl --prefix some/install/destination
+</code></pre>
+<p>Then "make". </p>
+<p>As an example of how to create a deployable app a Makefile project is provided 
+in test/nacl/Makefile, which includes some monkey patching of the common.mk file 
+provided by NaCl, without which linking properly to SDL won't work (the search 
+path can't be modified externally, so the linker won't find SDL's binaries unless 
+you dump them into the SDK path, which is inconvenient).
+Also provided in test/nacl is the required support file, such as index.html, 
+manifest.json, etc.
+SDL apps for NaCl run on a worker thread using the ppapi_simple infrastructure.
+This allows for blocking calls on all the relevant systems (OpenGL ES, filesystem),
+hiding the asynchronous nature of the browser behind the scenes...which is not the
+same as making it disappear!</p>
+<p>================================================================================
+Running tests
+================================================================================</p>
+<p>Due to the nature of NaCl programs, building and running SDL tests is not as
+straightforward as one would hope. The script naclbuild.sh in build-scripts 
+automates the process and should serve as a guide for users of SDL trying to build 
+their own applications.</p>
+<p>Basic usage:</p>
+<pre><code>./naclbuild.sh path/to/pepper/toolchain (i.e. ~/naclsdk/pepper_35)
+</code></pre>
+<p>This will build testgles2.c by default.</p>
+<p>If you want to build a different test, for example testrendercopyex.c:</p>
+<pre><code>SOURCES=~/sdl/SDL/test/testrendercopyex.c ./naclbuild.sh ~/naclsdk/pepper_35
+</code></pre>
+<p>Once the build finishes, you have to serve the contents with a web server (the
+script will give you instructions on how to do that with Python).</p>
+<p>================================================================================
+RWops and nacl_io
+================================================================================</p>
+<p>SDL_RWops work transparently with nacl_io. Two functions control the mount points:</p>
+<pre><code>int mount(const char* source, const char* target, 
+                  const char* filesystemtype, 
+                  unsigned long mountflags, const void *data);
+int umount(const char *target);
+
+For convenience, SDL will by default mount an httpfs tree at / before calling
+</code></pre>
+<p>the app's main function. Such setting can be overridden by calling:</p>
+<pre><code>umount("/");
+</code></pre>
+<p>And then mounting a different filesystem at /</p>
+<p>It's important to consider that the asynchronous nature of file operations on a
+browser is hidden from the application, effectively providing the developer with
+a set of blocking file operations just like you get in a regular desktop 
+environment, which eases the job of porting to Native Client, but also introduces 
+a set of challenges of its own, in particular when big file sizes and slow 
+connections are involved.</p>
+<p>For more information on how nacl_io and mount points work, see:</p>
+<pre><code>https://developer.chrome.com/native-client/devguide/coding/nacl_io
+https://src.chromium.org/chrome/trunk/src/native_client_sdk/src/libraries/nacl_io/nacl_io.h
+</code></pre>
+<p>To be able to save into the directory "/save/" (like backup of game) :</p>
+<pre><code>mount("", "/save", "html5fs", 0, "type=PERSISTENT");
+</code></pre>
+<p>And add to manifest.json :</p>
+<pre><code>"permissions": [
+    "unlimitedStorage"
+]
+</code></pre>
+<p>================================================================================
+TODO - Known Issues
+================================================================================
+* Testing of all systems with a real application (something other than SDL's tests)
+* Key events don't seem to work properly</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../README-os2/" class="btn btn-neutral float-right" title="OS2">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../README-ios/" class="btn btn-neutral" title="iOS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/libsdl-org/SDL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../README-ios/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../README-os2/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

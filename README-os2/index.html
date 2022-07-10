@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Sam Lantinga slouken@libsdl.org">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>OS2 - SDL</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "OS2";
+    var mkdocs_page_input_path = "README-os2.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> SDL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">General</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-cmake/">CMake</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-git/">Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-hg/">HG</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-visualc/">VisualC</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-kmsbsd/">KMSDRN</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-porting/">Porting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-directfb/">DirectFB</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-dynapi/">DynAPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-gesture/">Gestures</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-touch/">Touch</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Platform</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../README-platforms/">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-android/">Android</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-emscripten/">Empscripten</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-macosx/">OS X</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-ios/">iOS</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-nacl/">NativeClient</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">OS2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#compiling">Compiling:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing">Installing:</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-pandora/">Pandora</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-psp/">PSP</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-raspberrypi/">Raspberry Pi</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-wince/">WinCE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-windows/">Windows</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-winrt/">WinRT</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">SDL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Platform &raquo;</li>
+        
+      
+    
+    <li>OS2</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/libsdl-org/SDL/edit/master/docs/README-os2.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="simple-directmedia-layer-2-for-os2-ecomstation">Simple DirectMedia Layer 2 for OS/2 &amp; eComStation</h1>
+<p>SDL port for OS/2, authored by Andrey Vasilkin <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#100;&#105;&#103;&#105;&#64;&#111;&#115;&#50;&#46;&#115;&#110;&#99;&#46;&#114;&#117;">&#100;&#105;&#103;&#105;&#64;&#111;&#115;&#50;&#46;&#115;&#110;&#99;&#46;&#114;&#117;</a>, 2016</p>
+<p>OpenGL, joystick and audio capture not supported by this port.</p>
+<p>Additional environment variables (optional) for OS/2 version:</p>
+<p>SDL_AUDIO_SHARE
+  Values: 0 or 1, default is 0
+  Initializes the device as shareable or exclusively acquired.</p>
+<p>SDL_VIDEODRIVER
+  Values: DIVE or VMAN, default is DIVE
+  Use video subsystem: Direct interface video extensions (DIVE) or
+  Video Manager (VMAN).</p>
+<p>You may significantly increase video output speed with OS4 kernel and patched
+files vman.dll and dive.dll or with latest versions of ACPI support and video
+driver Panorama.</p>
+<p>Latest versions of OS/4 kernel:
+  http://gus.biysk.ru/os4/
+ (Info: https://www.os2world.com/wiki/index.php/Phoenix_OS/4)</p>
+<p>Patched files vman.dll and dive.dll:
+  http://gus.biysk.ru/os4/test/pached_dll/PATCHED_DLL.RAR</p>
+<h2 id="compiling">Compiling:</h2>
+<p>Open Watcom 1.9 or newer is tested. For the new Open Watcom V2 fork, see:
+https://github.com/open-watcom/ and https://open-watcom.github.io
+WATCOM ervironment variable must to be set to the Open Watcom install
+directory. To compile, run: wmake -f Makefile.os2</p>
+<h2 id="installing">Installing:</h2>
+<ul>
+<li>eComStation:</li>
+</ul>
+<p>If you have previously installed SDL2, make a Backup copy of SDL2.dll
+  located in D:\ecs\dll (where D: is disk on which installed eComStation).
+  Stop all programs running with SDL2. Copy SDL2.dll to D:\ecs\dll</p>
+<ul>
+<li>OS/2:</li>
+</ul>
+<p>Copy SDL2.dll to any directory on your LIBPATH.  If you have a previous
+  version installed, close all SDL2 applications before replacing the old
+  copy.  Also make sure that any other older versions of DLLs are removed
+  from your system.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../README-pandora/" class="btn btn-neutral float-right" title="Pandora">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../README-nacl/" class="btn btn-neutral" title="NativeClient"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/libsdl-org/SDL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../README-nacl/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../README-pandora/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

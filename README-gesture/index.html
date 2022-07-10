@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Sam Lantinga slouken@libsdl.org">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Gestures - SDL</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Gestures";
+    var mkdocs_page_input_path = "README-gesture.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> SDL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">General</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../README-cmake/">CMake</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-git/">Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-hg/">HG</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-visualc/">VisualC</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-kmsbsd/">KMSDRN</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-porting/">Porting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-directfb/">DirectFB</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-dynapi/">DynAPI</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Gestures</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#recording">Recording:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#performing">Performing:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#saving">Saving:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loading">Loading:</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-touch/">Touch</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Platform</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-platforms/">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-android/">Android</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-emscripten/">Empscripten</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-macosx/">OS X</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-ios/">iOS</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-nacl/">NativeClient</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-os2/">OS2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-pandora/">Pandora</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-psp/">PSP</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-raspberrypi/">Raspberry Pi</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-wince/">WinCE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-windows/">Windows</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-winrt/">WinRT</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">SDL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>General &raquo;</li>
+        
+      
+    
+    <li>Gestures</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/libsdl-org/SDL/edit/master/docs/README-gesture.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="dollar-gestures">Dollar Gestures</h1>
+<p>SDL provides an implementation of the $1 gesture recognition system. This allows for recording, saving, loading, and performing single stroke gestures.</p>
+<p>Gestures can be performed with any number of fingers (the centroid of the fingers must follow the path of the gesture), but the number of fingers must be constant (a finger cannot go down in the middle of a gesture). The path of a gesture is considered the path from the time when the final finger went down, to the first time any finger comes up. </p>
+<p>Dollar gestures are assigned an Id based on a hash function. This is guaranteed to remain constant for a given gesture. There is a (small) chance that two different gestures will be assigned the same ID. In this case, simply re-recording one of the gestures should result in a different ID.</p>
+<h2 id="recording">Recording:</h2>
+<p>To begin recording on a touch device call:
+SDL_RecordGesture(SDL_TouchID touchId), where touchId is the id of the touch device you wish to record on, or -1 to record on all connected devices.</p>
+<p>Recording terminates as soon as a finger comes up. Recording is acknowledged by an SDL_DOLLARRECORD event.
+A SDL_DOLLARRECORD event is a dgesture with the following fields:</p>
+<ul>
+<li>event.dgesture.touchId   - the Id of the touch used to record the gesture.</li>
+<li>event.dgesture.gestureId - the unique id of the recorded gesture.</li>
+</ul>
+<h2 id="performing">Performing:</h2>
+<p>As long as there is a dollar gesture assigned to a touch, every finger-up event will also cause an SDL_DOLLARGESTURE event with the following fields:</p>
+<ul>
+<li>event.dgesture.touchId    - the Id of the touch which performed the gesture.</li>
+<li>event.dgesture.gestureId  - the unique id of the closest gesture to the performed stroke.</li>
+<li>event.dgesture.error      - the difference between the gesture template and the actual performed gesture. Lower error is a better match.</li>
+<li>event.dgesture.numFingers - the number of fingers used to draw the stroke.</li>
+</ul>
+<p>Most programs will want to define an appropriate error threshold and check to be sure that the error of a gesture is not abnormally high (an indicator that no gesture was performed).</p>
+<h2 id="saving">Saving:</h2>
+<p>To save a template, call SDL_SaveDollarTemplate(gestureId, dst) where gestureId is the id of the gesture you want to save, and dst is an SDL_RWops pointer to the file where the gesture will be stored.</p>
+<p>To save all currently loaded templates, call SDL_SaveAllDollarTemplates(dst) where dst is an SDL_RWops pointer to the file where the gesture will be stored.</p>
+<p>Both functions return the number of gestures successfully saved.</p>
+<h2 id="loading">Loading:</h2>
+<p>To load templates from a file, call SDL_LoadDollarTemplates(touchId,src) where touchId is the id of the touch to load to (or -1 to load to all touch devices), and src is an SDL_RWops pointer to a gesture save file. </p>
+<p>SDL_LoadDollarTemplates returns the number of templates successfully loaded.</p>
+<p>===========================================================================
+Multi Gestures
+===========================================================================
+SDL provides simple support for pinch/rotate/swipe gestures. 
+Every time a finger is moved an SDL_MULTIGESTURE event is sent with the following fields:</p>
+<ul>
+<li>event.mgesture.touchId - the Id of the touch on which the gesture was performed.</li>
+<li>event.mgesture.x       - the normalized x coordinate of the gesture. (0..1)</li>
+<li>event.mgesture.y       - the normalized y coordinate of the gesture. (0..1)</li>
+<li>event.mgesture.dTheta  - the amount that the fingers rotated during this motion.</li>
+<li>event.mgesture.dDist   - the amount that the fingers pinched during this motion.</li>
+<li>event.mgesture.numFingers - the number of fingers used in the gesture.</li>
+</ul>
+<p>===========================================================================
+Notes
+===========================================================================
+For a complete example see test/testgesture.c</p>
+<p>Please direct questions/comments to:
+   jim.tla+sdl_touch@gmail.com</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../README-touch/" class="btn btn-neutral float-right" title="Touch">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../README-dynapi/" class="btn btn-neutral" title="DynAPI"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/libsdl-org/SDL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../README-dynapi/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../README-touch/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

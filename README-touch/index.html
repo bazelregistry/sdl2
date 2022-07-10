@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Sam Lantinga slouken@libsdl.org">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Touch - SDL</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Touch";
+    var mkdocs_page_input_path = "README-touch.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/c.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> SDL</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">General</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../README-cmake/">CMake</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-git/">Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-hg/">HG</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-visualc/">VisualC</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-kmsbsd/">KMSDRN</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-porting/">Porting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-directfb/">DirectFB</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-dynapi/">DynAPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-gesture/">Gestures</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Touch</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Platform</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-platforms/">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-android/">Android</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-emscripten/">Empscripten</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-linux/">Linux</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-macosx/">OS X</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-ios/">iOS</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-nacl/">NativeClient</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-os2/">OS2</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-pandora/">Pandora</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-psp/">PSP</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-raspberrypi/">Raspberry Pi</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-wince/">WinCE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-windows/">Windows</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../README-winrt/">WinRT</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">SDL</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>General &raquo;</li>
+        
+      
+    
+    <li>Touch</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/libsdl-org/SDL/edit/master/docs/README-touch.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="touch">Touch</h1>
+<h1 id="system-specific-notes">System Specific Notes</h1>
+<p>Linux:
+The linux touch system is currently based off event streams, and proc/bus/devices. The active user must be given permissions to read /dev/input/TOUCHDEVICE, where TOUCHDEVICE is the event stream for your device. Currently only Wacom tablets are supported. If you have an unsupported tablet contact me at jim.tla+sdl_touch@gmail.com and I will help you get support for it.</p>
+<p>Mac:
+The Mac and iPhone APIs are pretty. If your touch device supports them then you'll be fine. If it doesn't, then there isn't much we can do.</p>
+<p>iPhone: 
+Works out of box.</p>
+<p>Windows:
+Unfortunately there is no windows support as of yet. Support for Windows 7 is planned, but we currently have no way to test. If you have a Windows 7 WM_TOUCH supported device, and are willing to help test please contact me at jim.tla+sdl_touch@gmail.com</p>
+<p>===========================================================================
+Events
+===========================================================================
+SDL_FINGERDOWN:
+Sent when a finger (or stylus) is placed on a touch device.
+Fields:
+* event.tfinger.touchId  - the Id of the touch device.
+* event.tfinger.fingerId - the Id of the finger which just went down.
+* event.tfinger.x        - the x coordinate of the touch (0..1)
+* event.tfinger.y        - the y coordinate of the touch (0..1)
+* event.tfinger.pressure - the pressure of the touch (0..1)</p>
+<p>SDL_FINGERMOTION:
+Sent when a finger (or stylus) is moved on the touch device.
+Fields:
+Same as SDL_FINGERDOWN but with additional:
+* event.tfinger.dx       - change in x coordinate during this motion event.
+* event.tfinger.dy       - change in y coordinate during this motion event.</p>
+<p>SDL_FINGERUP:
+Sent when a finger (or stylus) is lifted from the touch device.
+Fields:
+Same as SDL_FINGERDOWN.</p>
+<p>===========================================================================
+Functions
+===========================================================================
+SDL provides the ability to access the underlying SDL_Finger structures.
+These structures should <em>never</em> be modified.</p>
+<p>The following functions are included from SDL_touch.h</p>
+<p>To get a SDL_TouchID call SDL_GetTouchDevice(int index).
+This returns a SDL_TouchID.
+IMPORTANT: If the touch has been removed, or there is no touch with the given index, SDL_GetTouchDevice() will return 0. Be sure to check for this!</p>
+<p>The number of touch devices can be queried with SDL_GetNumTouchDevices().</p>
+<p>A SDL_TouchID may be used to get pointers to SDL_Finger.</p>
+<p>SDL_GetNumTouchFingers(touchID) may be used to get the number of fingers currently down on the device.</p>
+<p>The most common reason to access SDL_Finger is to query the fingers outside the event. In most cases accessing the fingers is using the event. This would be accomplished by code like the following:</p>
+<pre><code>  float x = event.tfinger.x;
+  float y = event.tfinger.y;
+</code></pre>
+<p>To get a SDL_Finger, call SDL_GetTouchFinger(SDL_TouchID touchID, int index), where touchID is a SDL_TouchID, and index is the requested finger.
+This returns a SDL_Finger *, or NULL if the finger does not exist, or has been removed.
+A SDL_Finger is guaranteed to be persistent for the duration of a touch, but it will be de-allocated as soon as the finger is removed. This occurs when the SDL_FINGERUP event is <em>added</em> to the event queue, and thus <em>before</em> the SDL_FINGERUP event is polled.
+As a result, be very careful to check for NULL return values.</p>
+<p>A SDL_Finger has the following fields:
+* x, y:
+    The current coordinates of the touch.
+* pressure:
+    The pressure of the touch.</p>
+<p>===========================================================================
+Notes
+===========================================================================
+For a complete example see test/testgesture.c</p>
+<p>Please direct questions/comments to:
+   jim.tla+sdl_touch@gmail.com
+   (original author, API was changed since)</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../README-platforms/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../README-gesture/" class="btn btn-neutral" title="Gestures"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/libsdl-org/SDL/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../README-gesture/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../README-platforms/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
