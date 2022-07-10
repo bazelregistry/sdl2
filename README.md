@@ -38,5 +38,5 @@ There are several targets for getting a shared library of SDL2
 # Linux
 @bazelregistry_sdl2//:libSDL2.so
 # Windows
-@bazelregistry_sdl2//::SDL2.dll
+@bazelregistry_sdl2//:SDL2.dll
 ```
